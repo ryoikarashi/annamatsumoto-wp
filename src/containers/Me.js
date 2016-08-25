@@ -1,48 +1,80 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { loadMe } from '../actions';
+import Loading from '../components/Loading';
+
+const MeInfo = ({ me }) => (
+  <div>
+    {/* Basic Info */}
+    <article className="" dangerouslySetInnerHTML={{__html: me.acf.basic}} />
+
+    {/* Education */}
+    {me.acf.education.length
+      ?
+        <article className="">
+          <ul>
+            { me.acf.education.map((item, index) => <li key={`${item.date}-${index}`}><span>{item.date}</span>{item.content}</li>) }
+          </ul>
+        </article>
+      : ''
+    }
+
+    {/* History */}
+    {me.acf.history.length
+      ?
+        <article className="">
+          <ul>
+            { me.acf.history.map((item, index) => <li key={`${item.date}-${index}`}><span>{item.date}</span>{item.content}</li>) }
+          </ul>
+        </article>
+      : ''
+    }
+  </div>
+);
 
 class Me extends Component {
+
+  componentWillMount() {
+    this.props.loadMe();
+  }
+
   render() {
 
     console.log(this.props);
 
+    const { me, isFetching } = this.props;
+
     return (
-      <section className="">
-
-        {/* Basic Info */}
-        <article className="" dangerouslySetInnerHTML={{_html: this.props.acf.basic}} />
-
-        {/* Education */}
-        {this.props.acf.education.length
-          ?
-            <article className="">
-              <ul>
-                { this.props.acf.education.map(item => <li><span>{item.date}</span>{item.content}</li>) }
-              </ul>
-            </article>
-          : ''
-        }
-
-        {/* History */}
-        {this.props.acf.history.length
-          ?
-            <article className="">
-              <ul>
-                { this.props.acf.history.map(item => <li>{item.content}</li>) }
-              </ul>
-            </article>
-          : ''
-        }
-      </section>
+      <div>
+        <div className="[ band ]">
+          <div className="wrapper">
+            <div className="layout">
+              {
+                !me
+                  ? <Loading isFetching={isFetching} />
+                  : <MeInfo me={me} />
+              }
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
+
+  const {
+    me: { isFetching },
+    entities: { me }
+  } = state;
+
+  let meInfo = me[Object.keys(me)[0]];
+
   return {
-    ...state,
-    ...ownProps
+    me: meInfo,
+    isFetching
   };
 }
 
-export default connect(mapStateToProps)(Me);
+export default connect(mapStateToProps, { loadMe })(Me);

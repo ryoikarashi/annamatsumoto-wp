@@ -5,6 +5,8 @@ export const LOAD_TAGS = 'LOAD_TAGS';
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 
+export const LOAD_ME = 'LOAD_ME';
+
 function createRequestTypes(base) {
   return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
     acc[type] = `${base}_${type}`;
@@ -15,6 +17,7 @@ function createRequestTypes(base) {
 export const POSTS = createRequestTypes('POSTS');
 export const TAGS = createRequestTypes('TAGS');
 export const CATEGORIES = createRequestTypes('CATEGORIES');
+export const ME = createRequestTypes('ME');
 
 function action(type, payload = {}) {
   return { type, ...payload };
@@ -39,9 +42,18 @@ export const categories = {
   success: (filter, response) => action(CATEGORIES.SUCCESS, {response}),
   failure: (error) => action(CATEGORIES.FAILURE, {error})
 };
+
+export const me = {
+  request: () => action(ME.REQUEST),
+  success: (filter, response) => action(ME.SUCCESS, {response}),
+  failure: (error) => action(ME.FAILURE, {error})
+};
+
 export const loadPosts = (filter, params) => action(LOAD_POSTS, {filter, params});
 export const loadMorePosts = (filter, params) => action(LOAD_MORE_POSTS, {filter, params});
 export const loadTags = () => action(LOAD_TAGS);
 export const loadCategories = () => action(LOAD_CATEGORIES);
+
+export const loadMe = () => action(LOAD_ME);
 
 export const resetErrorMessage = () => action(RESET_ERROR_MESSAGE)

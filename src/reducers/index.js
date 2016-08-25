@@ -4,7 +4,14 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import paginate from './paginate';
 
-const entities = (state = { posts: {}, tags: {}, categories: {} }, action) => {
+const entities = (
+  state = {
+    posts: {},
+    tags: {},
+    categories: {},
+    me: {}
+  }, action) => {
+
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities);
   }
@@ -23,6 +30,28 @@ const errorMessage = (state = null, action) => {
   return state;
 };
 
+const me = (state = { isFetching: false }, action) => {
+  const { type } = action;
+
+  switch(type) {
+    case ActionTypes.ME.REQUEST: {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
+    case ActionTypes.ME.SUCCESS:
+    case ActionTypes.ME.FAILURE: {
+      return {
+        ...state,
+        isFetching: false
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 const pagination = combineReducers({
   postsByFilter: paginate({
     mapActionToKey: action => action.filter,
@@ -38,6 +67,7 @@ const rootReducer = combineReducers({
   routing,
   entities,
   pagination,
+  me,
   errorMessage
 });
 

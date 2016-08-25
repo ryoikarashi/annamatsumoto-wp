@@ -2,13 +2,10 @@
 import { take, put, call, fork, select } from 'redux-saga/effects';
 import { api } from '../services';
 import * as actions from '../actions';
-import { getPosts, getTags, getCategories } from '../reducers/selectors';
+import { getPosts, getTags, getCategories, getMe } from '../reducers/selectors';
 
-// each entity defines 3 creators { request, success, failure }
-const { posts, tags, categories } = actions;
+const { posts, tags, categories, me } = actions;
 
-// url for first page
-// urls for next pages will be extracted from the successive loadMore* requests
 const firstPagePostsUrl = params => {
 
   params.slug     = params.hasOwnProperty('slug')     ? params.slug     : '';
@@ -30,14 +27,8 @@ const firstPagePostsUrl = params => {
   `;
 };
 
-
 /***************************** Subroutines ************************************/
 
-// resuable fetch Subroutine
-// entity :  user | repo | starred | stargazers
-// apiFn  : api.fetchUser | api.fetchRepo | ...
-// id     : login | fullName
-// url    : next page url. If not provided will use pass it to apiFn
 function* fetchEntity(entity, apiFn, id, params, url) {
   yield put( entity.request(id) );
   const {response, error} = yield call(apiFn, params, url || id);
@@ -47,12 +38,11 @@ function* fetchEntity(entity, apiFn, id, params, url) {
     yield put( entity.failure(id, error) );
 }
 
-// yeah! we can also bind Generators
 export const fetchPosts      = fetchEntity.bind(null, posts, api.fetchPosts);
 export const fetchTags       = fetchEntity.bind(null, tags, api.fetchTags);
 export const fetchCategories = fetchEntity.bind(null, categories, api.fetchCategories);
+export const fetchMe         = fetchEntity.bind(null, me, api.fetchMe);
 
-// load user unless it is cached
 function* loadPosts(filter, params, loadMore) {
   const posts = yield select(getPosts, filter, params);
 
@@ -66,25 +56,28 @@ function* loadPosts(filter, params, loadMore) {
   }
 }
 
-// load repo unless it is cached
 function* loadTags() {
   const tags = yield select(getTags);
   if (!Object.keys(tags).length)
     yield call(fetchTags);
 }
 
-// load repo unless it is cached
 function* loadCategories() {
   const categories = yield select(getCategories);
   if (!Object.keys(categories).length)
     yield call(fetchCategories);
 }
 
+function* loadMe() {
+  const me = yield select(getMe);
+  if (!Object.keys(me).length)
+    yield call(fetchMe);
+}
+
 /******************************************************************************/
 /******************************* WATCHERS *************************************/
 /******************************************************************************/
 
-// Fetches data for a User : user data + starred repos
 function* watchLoadPosts() {
   while(true) {
     const {filter, params} = yield take(actions.LOAD_POSTS);
@@ -92,7 +85,6 @@ function* watchLoadPosts() {
   }
 }
 
-// Fetches data for a Repo: repo data + repo stargazers
 function* watchLoadTags() {
   while(true) {
     yield take(actions.LOAD_TAGS);
@@ -101,7 +93,6 @@ function* watchLoadTags() {
   }
 }
 
-// Fetches data for a Repo: repo data + repo stargazers
 function* watchLoadCategories() {
   while(true) {
     yield take(actions.LOAD_CATEGORIES);
@@ -117,11 +108,20 @@ function* watchLoadMorePosts() {
   }
 }
 
+function* watchLoadMe() {
+  while(true) {
+    yield take(actions.LOAD_ME);
+
+    yield fork(loadMe);
+  }
+}
+
 export default function* root() {
   yield [
     fork(watchLoadPosts),
     fork(watchLoadMorePosts),
     fork(watchLoadTags),
-    fork(watchLoadCategories)
+    fork(watchLoadCategories),
+    fork(watchLoadMe)
   ]
 }
