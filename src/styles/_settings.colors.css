@@ -1,8 +1,8 @@
 :root {
   /* Default Color */
-  --color-light:      #9A86EC;
-  --color-dark:       #545386;
-  --color-dark-light: #8269AE;
+  --color-light:      #EEE;
+  --color-dark:       #444;
+  --color-dark-light: #444;
   --color-base:       #FFF;
   --color-type:       #444;
   --color-program:    rgba(0,0,0,.01);

@@ -42,6 +42,7 @@
 @import 'components.404';
 @import 'components.header';
 @import 'components.footer';
+@import 'components.top';
 @import 'components.filter';
 @import 'components.post-list';
 @import 'components.post-detail';

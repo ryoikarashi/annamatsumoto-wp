@@ -1,6 +1,6 @@
 :root {
-  --page-micro-background: var(--color-dark);
-  --page-micro-text: #FFF;
+  --page-micro-background: transparent;
+  --page-micro-text: var(--color-base);
   --page-micro-padding: var(--base-spacing-unit--small);
 }
 

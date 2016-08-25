@@ -1,6 +1,6 @@
 :root {
-  --page-header-background: var(--color-dark);
-  --page-header-text:       var(--color-base);
+  --page-header-background: var(--color-base);
+  --page-header-text:       var(--color-type);
   --page-header-padding:    var(--base-spacing-unit--tiny);
   --page-header-icon-size:  30px;
 }

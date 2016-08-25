@@ -64,7 +64,7 @@ class Single extends Component {
           :  <article className="single-post [ markdown-body ]">
               <h1 className="single-post__title">{item.title.rendered}</h1>
               <time className="single-post__time">
-                created at <Link to={`/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
+                created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
               </time>
               <div className="single-post__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
             </article>

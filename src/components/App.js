@@ -7,7 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Helmet title="Garbage" />
+        <Helmet title="ANNA MATSUMOTO" />
         <Header />
           <main className="main">
             {this.props.children}
