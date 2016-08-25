@@ -1,0 +1,10 @@
+.wrapper {
+  margin: 0 auto;
+  padding-right: var(--base-spacing-unit--small);
+  padding-left:  var(--base-spacing-unit--small);
+
+  @media (--breakpoint-lap-and-up) {
+    padding-right: var(--base-spacing-unit);
+    padding-left:  var(--base-spacing-unit);
+  }
+}

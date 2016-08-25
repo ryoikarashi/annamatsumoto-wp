@@ -1,0 +1,39 @@
+:root {
+  /* Default Color */
+  --color-light:      #9A86EC;
+  --color-dark:       #545386;
+  --color-dark-light: #8269AE;
+  --color-base:       #FFF;
+  --color-type:       #444;
+  --color-program:    rgba(0,0,0,.01);
+
+  /* Background */
+  --color-background: var(--color-base);
+
+  /* Links */
+  --color-links-text:   var(--color-dark);
+  --color-links-border: var(--color-dark);
+
+  /* Text */
+  --color-text:           var(--color-type);
+  --color-pre-background: var(--color-dark);
+  --color-pre:            var(--color-program);
+  --color-code:           var(--color-program);
+  --color-code-text:      var(--color-dark);
+  --color-code-border:    var(--color-dark);
+
+  /* Buttons */
+  --color-button-background:        var(--color-dark-light);
+  --color-button-background--hover: var(--color-dark);
+  --color-button-text:              var(--color-base);
+  --color-button-border:            var(--color-dark);
+
+  /* Page Head */
+  --color-page-head: var(--color-light);
+
+  /* Headings */
+  --color-headings: var(--color-dark);
+
+  /* Quotes */
+  --color-quotes: var(--color-dark-light);
+}

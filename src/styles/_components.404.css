@@ -1,0 +1,14 @@
+:root {
+  --not-found-font-size: 24px;
+}
+
+.not-found {
+  @util center;
+  text-align: center;
+  .not-found__desc {
+    p {
+      font-size: var(--not-found-font-size);
+      margin: 0;
+    }
+  }
+}

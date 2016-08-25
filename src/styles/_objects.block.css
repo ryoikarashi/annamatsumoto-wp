@@ -1,0 +1,42 @@
+:root {
+  --block-gutter:        var(--base-spacing-unit);
+  --block-gutter--flush: 0;
+  --block-gutter--tiny:  calc(var(--base-spacing-unit) / 4);
+  --block-gutter--small: calc(var(--base-spacing-unit) / 2);
+  --block-gutter--large: calc(var(--base-spacing-unit) * 2);
+  --block-gutter--huge:  calc(var(--base-spacing-unit) * 4);
+}
+
+.block {
+  display: block;
+  &.block--right {
+    text-align: right;
+  }
+  &.block--center {
+    text-align: center;
+  }
+}
+
+  .block__img {
+    vertical-align: middle;
+    margin-bottom: var(--block-gutter);
+    .block--flush > & {
+      margin-bottom: var(--block-gutter--flush);
+    }
+    .block--tiny > & {
+      margin-bottom: var(--block-gutter--tiny);
+    }
+    .block--small > & {
+      margin-bottom: var(--block-gutter--small);
+    }
+    .block--large > & {
+      margin-bottom: var(--block-gutter--large);
+    }
+    .block--huge > & {
+      margin-bottom: var(--block-gutter--huge);
+    }
+  }
+
+  .block__body {
+    display: block;
+  }

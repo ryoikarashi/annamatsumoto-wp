@@ -1,0 +1,18 @@
+.single-post{
+
+}
+  .single-post__title {
+    text-align: center;
+
+    /* override markdown styles */
+    border-bottom: 0 !important;
+    margin-bottom: var(--base-spacing-unit--tiny) !important;
+    font-weight: inherit !important;
+  }
+
+    .single-post__time {
+      display: block;
+      margin-bottom: var(--base-spacing-unit--large);
+      text-align: center;
+      @mixin fontsize 14px;
+    }

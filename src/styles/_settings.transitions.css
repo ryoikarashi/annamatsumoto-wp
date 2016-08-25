@@ -1,0 +1,5 @@
+:root {
+  --base-transition-duration:          150ms;
+  --base-transition-timing-function:   cubic-bezier(0, 0, 0, 0);
+  --base-transition-delay:             150ms;
+}

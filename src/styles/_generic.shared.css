@@ -1,0 +1,24 @@
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl,
+blockquote, p, address,
+hr,
+table,
+fieldset, figure,
+pre
+{
+  margin-bottom: var(--base-spacing-unit);
+  margin-bottom: calc(strip(var(--base-spacing-unit)) / strip(var(--base-font-size)) * 1rem);
+}
+
+ul, ol, dd
+{
+  margin-left: calc(var(--base-spacing-unit) * 2);
+  margin-left: calc(2 * strip(var(--base-spacing-unit)) / strip(var(--base-font-size)) * 1rem);
+}
+
+blockquote {
+  p, q {
+    margin-bottom: calc(var(--base-spacing-unit) / 2);
+    margin-bottom: calc(strip(var(--base-spacing-unit)) / strip(var(--base-font-size)) / 2 * 1rem);
+  }
+}

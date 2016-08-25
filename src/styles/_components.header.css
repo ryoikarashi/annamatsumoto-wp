@@ -1,0 +1,21 @@
+:root {
+  --page-header-background: var(--color-dark);
+  --page-header-text:       var(--color-base);
+  --page-header-padding:    var(--base-spacing-unit--tiny);
+  --page-header-icon-size:  30px;
+}
+
+.header {
+  background-color: var(--page-header-background);
+  color: var(--color-base);
+  padding: var(--page-header-padding);
+  margin-bottom: var(--base-spacing-unit);
+  @util clearfix;
+}
+  .header__icon {
+    font-size: var(--page-header-icon-size);
+    color: var(--color-base);
+    cursor: pointer;
+    float: left;
+    margin-right: var(--base-spacing-unit--small);
+  }

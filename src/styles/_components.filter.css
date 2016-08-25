@@ -1,0 +1,79 @@
+:root {
+  --query-filter-height:            30px;
+  --query-filter-button-background: var(--color-dark-light);
+  --query-filter-button-text:       var(--color-base);
+  --query-filter-button-width:      var(--query-filter-height);
+  --query-filter-padding:           var(--base-spacing-unit);
+  --query-filter-padding--small:    var(--base-spacing-unit--small);
+  --query-filter-padding--tiny:     var(--base-spacing-unit--tiny);
+  --query-filter-input-background:  var(--color-base);
+  --query-filter-input-width:       var(--color-base);
+  --query-filter-input-background:  var(--color-base);
+  --query-filter-select-background: var(--color-base);
+  --query-filter-select-text:       var(--color-dark);
+}
+
+.query-filter {
+  float: right;
+  width: 100%;
+  @media (--breakpoint-palm-and-up) {
+    width: auto;
+  }
+}
+
+  .query-filter__select,
+  .query-filter__input,
+  .query-filter__button {
+    border-radius: var(--base-round);
+    height: var(--query-filter-height);
+    line-height: var(--query-filter-height);
+    border: none;
+    outline: none;
+
+    @media (--breakpoint-palm-and-up) {
+      margin-right: var(--base-spacing-unit--tiny);
+    }
+  }
+
+  .query-filter__select,
+  .query-filter__input {
+    width: 33.3333333%;
+    padding-right: var(--query-filter-padding--tiny);
+    padding-left: var(--query-filter-padding--tiny);
+
+    @media (--breakpoint-palm-and-up) {
+      padding-right: var(--query-filter-padding);
+      padding-left: var(--query-filter-padding);
+      width: auto;
+    }
+  }
+
+  .query-filter__select {
+    -webkit-appearance: none;
+    color: var(--query-filter-select-text);
+    position: relative;
+    @mixin font-weight bold;
+  }
+
+  .query-filter__input {
+    background: var(--query-filter-input-background);
+    color: var(--color-dark);
+  }
+
+  .query-filter__button {
+    vertical-align: top;
+    background: var(--query-filter-button-background);
+    color: var(--query-filter-button-text);
+    padding-right: var(--query-filter-padding--small);
+    padding-left: var(--query-filter-padding--small);
+  }
+    .query-filter__button--submit {
+      position: absolute;
+      right: 6px;
+      width: var(--query-filter-button-width);
+      padding: 0;
+      cursor: pointer;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      @mixin fontsize 22px;
+    }

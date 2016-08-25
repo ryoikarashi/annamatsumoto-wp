@@ -1,0 +1,11 @@
+:root {
+  --base-font-size: 16px;
+  --base-line-height: 24px;
+  --base-spacing-unit:        var(--base-line-height);
+  --base-spacing-unit--tiny:  calc(var(--base-spacing-unit) / 4);
+  --base-spacing-unit--small: calc(var(--base-spacing-unit) / 2);
+  --base-spacing-unit--large: calc(var(--base-spacing-unit) * 2);
+  --base-spacing-unit--huge:  calc(var(--base-spacing-unit) * 4);
+  --base-round: 3px;
+  --footer-height: 40px;
+}

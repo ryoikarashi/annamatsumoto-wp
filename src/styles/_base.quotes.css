@@ -1,0 +1,41 @@
+/* Inline quotes. */
+q {
+  font-style: italic;
+  &:before {
+    content: open-quote;
+  }
+  &:after {
+    content: close-quote;
+  }
+}
+
+/* Block quotes. */
+blockquote {
+  margin-right: var(--base-spacing-unit);
+  margin-left:  var(--base-spacing-unit);
+  padding-left: var(--base-spacing-unit);
+  border-left: 2px solid var(--color-quotes);
+  font-style: italic;
+  p {
+    text-indent: -0.41em;
+    &:first-of-type {
+      &:before {
+        content: open-quote;
+      }
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+      &:after {
+        content: close-quote !important;
+      }
+    }
+  }
+  q {
+    &:before {
+      content: open-quote;
+    }
+    &:after {
+      content: close-quote;
+    }
+  }
+}

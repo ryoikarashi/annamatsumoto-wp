@@ -1,0 +1,7 @@
+a {
+  text-decoration: none;
+  color: var(--color-links-text);
+  @mixin attention {
+    text-decoration: underline;
+  }
+}

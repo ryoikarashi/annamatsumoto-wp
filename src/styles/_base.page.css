@@ -1,0 +1,10 @@
+html {
+  font-size: calc(strip(var(--base-font-size)) / strip(16px) * 1em);
+  font-family: var(--font-family);
+  @mixin font-weight regular;
+  line-height: calc(var(--base-line-height) / var(--base-font-size));
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow-y: scroll;
+  min-height: 100%;
+}

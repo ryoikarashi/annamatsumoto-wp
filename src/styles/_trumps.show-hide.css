@@ -1,0 +1,37 @@
+@define-mixin hide {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.hide { @mixin hide; }
+
+@media (--breakpoint-mobile) {
+  .hide-mobile { @mixin hide; }
+}
+
+@media (--breakpoint-palm) {
+  .hide-palm { @mixin hide; }
+}
+
+@media (--breakpoint-palm-and-up) {
+  .hide-palm-and-up { @mixin hide; }
+}
+
+@media (--breakpoint-lap) {
+  .hide-lap { @mixin hide; }
+}
+
+@media (--breakpoint-lap-and-up) {
+  .hide-lap-and-up { @mixin hide; }
+}
+
+@media (--breakpoint-portable) {
+  .hide-portable { @mixin hide; }
+}
+
+@media (--breakpoint-desk) {
+  .hide-desk { @mixin hide; }
+}

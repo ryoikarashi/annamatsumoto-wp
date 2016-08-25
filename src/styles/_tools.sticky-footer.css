@@ -1,0 +1,4 @@
+@define-placeholder sticky-footer {
+  position: absolute;
+  bottom: 0;
+}

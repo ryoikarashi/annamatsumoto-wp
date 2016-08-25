@@ -1,0 +1,32 @@
+:root {
+  --heading-size-1:  36px;
+  --heading-size-2:  30px;
+  --heading-size-3:  24px;
+  --heading-size-4:  20px;
+  --heading-size-5:  16px;
+  --heading-size-6:  14px;
+}
+
+h1 {
+    @mixin fontsize var(--heading-size-1);
+}
+
+h2 {
+    @mixin fontsize var(--heading-size-2);
+}
+
+h3 {
+    @mixin fontsize var(--heading-size-3);
+}
+
+h4 {
+    @mixin fontsize var(--heading-size-4);
+}
+
+h5 {
+    @mixin fontsize var(--heading-size-5);
+}
+
+h6 {
+    @mixin fontsize var(--heading-size-6);
+}

@@ -1,0 +1,59 @@
+:root {
+  --btn-color-text:        var(--color-base);
+  --btn-padding:           var(--base-spacing-unit);
+  --btn-padding--tiny:     calc(var(--btn-padding) / 4);
+  --btn-padding--small:    calc(var(--btn-padding) / 2);
+  --btn-padding--large:    calc(var(--btn-padding) * 2);
+  --btn-padding--huge:     calc(var(--btn-padding) * 4);
+  --btn-background:        var(--color-button-background);
+  --btn-background--hover: var(--color-button-background--hover);
+  --btn-text:              var(--color-button-text);
+  --btn-radius:            var(--base-round);
+  --btn-border-color:      var(--color-button-border);
+  --btn-border-width:      2px;
+  --btn-border--flush:     0px;
+  --btn-border-style:      solid;
+}
+
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  font: inherit;
+  text-align: center;
+  margin:  0;
+  cursor: pointer;
+  overflow: visible;
+  padding: calc(var(--btn-padding) - var(--btn-border-width)) calc(var(--btn-padding) * 2 - var(--btn-border-width));
+  background-color: var(--btn-background);
+  border-radius: var(--btn-radius);
+  border: var(--btn-border--flush);
+  outline: none;
+  color: var(--btn-color-text);
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: var(--btn-text);
+    background-color: var(--btn-background--hover);
+    @mixin transition background-color;
+  }
+
+  &.btn--tiny {
+    padding: calc(var(--btn-padding--tiny) - var(--btn-border-width)) calc(var(--btn-padding--tiny) * 2 - var(--btn-border-width));
+  }
+  &.btn--small {
+    padding: calc(var(--btn-padding--small) - var(--btn-border-width)) calc(var(--btn-padding--small) * 2 - var(--btn-border-width));
+  }
+  &.btn--large {
+    padding: calc(var(--btn-padding--large) - var(--btn-border-width)) calc(var(--btn-padding--large) * 2 - var(--btn-border-width));
+  }
+  &.btn--huge {
+    padding: calc(var(--btn-padding--huge) - var(--btn-border-width)) calc(var(--btn-padding--huge) * 2 - var(--btn-border-width));
+  }
+}
+
+.btn::-moz-focus-inner {
+    border:  0;
+    padding: 0;
+}

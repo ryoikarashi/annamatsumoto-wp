@@ -1,0 +1,8 @@
+.loading {
+  @util center;
+  text-align: center;
+  padding: 0;
+}
+  .loading__title {
+    margin: 0;
+  }

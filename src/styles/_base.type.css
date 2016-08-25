@@ -1,0 +1,73 @@
+/* Headings 1–6. */
+@mixin headings {
+  @mixin font-weight regular;
+  color: var(--color-headings);
+}
+
+/* Emboldened elements. */
+a,
+strong, b,
+dt {
+  @mixin font-weight bold;
+}
+
+/* Code-like elements. */
+code, kbd, samp {
+  color: var(--color-code);
+  font-family: Inconsolata, Monaco, Consolas, "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-style: normal;
+}
+
+pre {
+  white-space: pre;
+  word-wrap: normal;
+  overflow: auto;
+  padding: var(--base-spacing-unit--small);
+  background-color: var(--color-pre-background);
+  border-radius: var(--base-round);
+
+  @media --desktop-lap-and-up {
+    margin-right: -var(--base-spacing-unit--small);
+    margin-left:  -var(--base-spacing-unit--small);
+  }
+
+  &,
+  code, kbd, samp {
+    color: var(--color-pre);
+  }
+}
+
+/**
+ * Figures.
+ * 1. Outdent figures by an arbitrary amount at the relevant viewport size.
+ * 2. Reindent figcaptions.
+ */
+figure {
+
+  @media screen and (min-width: 1380px) {
+      margin-left: -128px; /* [1] */
+  }
+
+  & > img {
+    border-radius: var(--base-round);
+  }
+
+}
+
+  figcaption {
+    @mixin fontsize 12px;
+    @media screen and (min-width: 1380px) {
+        margin-left: 128px; /* [2] */
+    }
+  }
+
+/**
+ * Highlighted text.
+ */
+mark {
+  pre & {
+    background: none;
+    border-bottom: 1px solid;
+    color: inherit;
+  }
+}

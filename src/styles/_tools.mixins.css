@@ -1,0 +1,55 @@
+/*Apply ‘attention’ styles in one go. */
+@define-mixin attention $self: false {
+  @if($self != false) {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @mixin-content;
+    }
+  }
+  @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @mixin-content;
+    }
+  }
+}
+
+/* Generate Helvetica Neue’s numbered font-weights from their aliases. */
+@define-mixin font-weight $font-weight {
+  @if $font-weight == thin {
+    font-weight: 100;
+  }
+  @if $font-weight == regular {
+    font-weight: 300;
+  }
+  @if $font-weight == bold {
+    font-weight: 600;
+  }
+}
+
+/* Create all specified heading styles in one go. */
+@define-mixin headings $from: 1, $to: 6 {
+  @if $from >= 1 and $to <= 6 {
+    @for $i from $from to $to {
+      h$(i) {
+        @mixin-content;
+      }
+    }
+  }
+}
+
+/*  Create a fully formed type style (sizing and vertical rhythm) by passing in a single value */
+@define-mixin fontsize $font-size, $line-height: auto {
+    font-size: $font-size;
+    font-size: calc( strip($font-size) / strip(var(--base-font-size)) * 1rem );
+
+    @if $line-height == auto {
+      line-height: 1;
+    }
+    @else {
+      line-height: $line-height;
+    }
+}

@@ -1,0 +1,18 @@
+:root {
+  --page-micro-background: var(--color-dark);
+  --page-micro-text: #FFF;
+  --page-micro-padding: var(--base-spacing-unit--small);
+}
+
+.page-micro {
+  background-color: var(--page-micro-background);
+  padding: var(--page-micro-padding);
+  color: var(--page-micro-text);
+  &, a {
+    color: var(--page-micro-text);
+  }
+}
+  .page-micro__copy {
+    @mixin fontsize 12px;
+    display: block;
+  }

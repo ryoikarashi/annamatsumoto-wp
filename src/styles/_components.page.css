@@ -1,0 +1,4 @@
+html {
+  position: relative;
+  padding-bottom: var(--footer-height);
+}

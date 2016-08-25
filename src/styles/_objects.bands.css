@@ -1,0 +1,32 @@
+:root {
+  --band-highlight-background: var(--color-base);
+  --band-tint-background:      var(--color-light);
+  --band-dark-background:      var(--color-dark);
+  --band-dark-text:            var(--color-base);
+}
+
+.band {
+  padding-top:    var(--base-spacing-unit);
+  padding-bottom: var(--base-spacing-unit);
+  @media (--breakpoint-desk) {
+    padding-top:    var(--base-spacing-unit--large);
+    padding-bottom: var(--base-spacing-unit--large);
+  }
+}
+
+.band--large {
+  padding: var(--base-spacing-unit--large);
+}
+
+.band--highlight {
+  background-color: var(--band-highlight-background);
+}
+
+.band--tint {
+  background-color: var(--band-tint-background);
+}
+
+.band--dark {
+  background-color: var(--band-dark-background);
+  color: var(--band-dark-text);
+}

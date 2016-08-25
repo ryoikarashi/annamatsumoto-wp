@@ -1,0 +1,43 @@
+:root {
+  --md-min-width:      200px;
+  --md-max-width:      680px;
+  --md-padding:        45px;
+  --md-padding--small: 20px;
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: var(--md-min-width);
+  max-width: var(--md-max-width);
+  margin: 0 auto;
+  padding: var(--md-padding--small);
+  @media (--breakpoint-lap-and-up) {
+    padding: var(--md-padding);
+  }
+
+  pre {
+    background: var(--color-code);
+    border: 1px solid var(--color-code-border);
+    code {
+      color: var(--color-code-text);
+    }
+  }
+
+  code {
+    background: var(--color-code);
+    color: var(--color-code-text);
+    margin: 0 5px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+  }
+
+  a {
+    color: var(--color-links-text);
+  }
+
+  ol, ul {
+    padding-left: inherit;
+  }
+}
