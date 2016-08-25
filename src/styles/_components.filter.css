@@ -14,11 +14,8 @@
 }
 
 .query-filter {
-  float: right;
+  position: relative;
   width: 100%;
-  @media (--breakpoint-palm-and-up) {
-    width: auto;
-  }
 }
 
   .query-filter__select,
@@ -29,23 +26,14 @@
     line-height: var(--query-filter-height);
     border: none;
     outline: none;
-
-    @media (--breakpoint-palm-and-up) {
-      margin-right: var(--base-spacing-unit--tiny);
-    }
+    border-bottom: 4px solid var(--query-filter-select-text);
   }
 
   .query-filter__select,
   .query-filter__input {
-    width: 33.3333333%;
+    cursor: pointer;
     padding-right: var(--query-filter-padding--tiny);
     padding-left: var(--query-filter-padding--tiny);
-
-    @media (--breakpoint-palm-and-up) {
-      padding-right: var(--query-filter-padding);
-      padding-left: var(--query-filter-padding);
-      width: auto;
-    }
   }
 
   .query-filter__select {
@@ -60,6 +48,10 @@
     color: var(--color-dark);
   }
 
+    .query-filter__input--search {
+      padding-right: calc(var(--query-filter-padding--tiny) + var(--query-filter-height));
+    }
+
   .query-filter__button {
     vertical-align: top;
     background: var(--query-filter-button-background);
@@ -69,7 +61,7 @@
   }
     .query-filter__button--submit {
       position: absolute;
-      right: 6px;
+      right: 0;
       width: var(--query-filter-button-width);
       padding: 0;
       cursor: pointer;

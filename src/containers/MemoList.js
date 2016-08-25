@@ -4,6 +4,8 @@ import MemoItem from '../components/MemoItem';
 import Loading from '../components/Loading';
 import { loadPosts } from '../actions';
 import Paginator from './Paginator';
+import QueryFilter from './QueryFilter';
+import { loadCategories, loadTags } from '../actions';
 
 class MemoList extends Component {
 
@@ -34,6 +36,15 @@ class MemoList extends Component {
         <div className="[ band ]">
           <div className="wrapper">
             <div className="layout">
+              <div className="[ band--tiny ]">
+                <div className="[ layout__item ] [ lap-and-up-one-half ]">
+                  <div className="[ layout__item ] [ lap-and-up-one-tenth ]">
+                  </div>
+                  <div className="[ layout__item ] [ desk-three-quarters ]">
+                    <QueryFilter {...this.props} />
+                  </div>
+                </div>
+              </div>
               {
                 !allPosts.length
                   ? <Loading isFetching={isFetching} />
@@ -56,7 +67,7 @@ function mapStateToProps(state, ownProps) {
 
   const {
     pagination: { postsByFilter },
-    entities: { posts }
+    entities: { posts, tags, categories }
   } = state;
 
   const postsPagination = postsByFilter[filter] || { ids: [] };
@@ -64,6 +75,8 @@ function mapStateToProps(state, ownProps) {
   const { nextPageUrl } = postsPagination;
 
   return {
+    tags,
+    categories,
     allPosts,
     filter,
     postsPagination,
@@ -71,4 +84,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { loadPosts })(MemoList);
+export default connect(mapStateToProps, { loadPosts, loadCategories, loadTags })(MemoList);

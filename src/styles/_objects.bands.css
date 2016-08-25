@@ -15,7 +15,17 @@
 }
 
 .band--large {
-  padding: var(--base-spacing-unit--large);
+  padding-top: var(--base-spacing-unit--large);
+  padding-bottom: var(--base-spacing-unit--large);
+}
+
+.band--tiny {
+  padding-top: var(--base-spacing-unit--tiny);
+  padding-bottom: var(--base-spacing-unit--tiny);
+  @media (--breakpoint-desk) {
+    padding-top: var(--base-spacing-unit--small);
+    padding-bottom: var(--base-spacing-unit--small);
+  }
 }
 
 .band--highlight {

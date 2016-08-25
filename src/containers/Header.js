@@ -1,39 +1,23 @@
 import { Component } from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router';
-// import QueryFilter from './QueryFilter';
-// import { loadPosts, loadCategories, loadTags } from '../actions';
 
 class Header extends Component {
   render() {
     return (
       <header className="header">
-        <h1 className="header__title">
-          <Link to="/">
-            <span className="header__title--capital">A</span>nna<span className="name-spacer"></span><span className="header__title--capital">M</span>atsumoto
-          </Link>
-        </h1>
-        <nav>
+        <Link className="header__title" to="/">
+          <h1 className="header__title--en"><span>Anna Matsumoto</span></h1>
+          <h2 className="header__title--ja"><span>松本 杏菜</span></h2>
+        </Link>
+        <nav className="header__nav">
           <ul>
-            <li><Link to="/me">me</Link></li>
-            <li><Link to="/works">works</Link></li>
+            <li className="header__nav__item"><Link to="/me">ME</Link></li>
+            <li className="header__nav__item"><Link to="/works">WORKS</Link></li>
           </ul>
         </nav>
-        {/* <QueryFilter {...this.props} /> */}
       </header>
     )
   }
 }
 
 export default Header;
-
-// function mapStateToProps(state) {
-//
-//   const {
-//     entities: { tags, categories }
-//   } = state;
-//
-//   return { tags, categories };
-// }
-//
-// export default connect(mapStateToProps, { loadPosts, loadCategories, loadTags })(Header);
