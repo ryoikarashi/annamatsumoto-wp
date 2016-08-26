@@ -66,7 +66,7 @@ export default class TagFilter extends Component {
     let searchInput;
 
     return (
-      <div className="[ layout ]">
+      <div className="[ band--small ]">
         <form className="query-filter" onSubmit={e => {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
@@ -74,7 +74,7 @@ export default class TagFilter extends Component {
 
           { /* <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]" onClick={this.goHome}></i> */}
 
-          <select className="query-filter__select query-filter__select--category [ layout__item ] [ lap-and-up-one-quarter ]" ref={node => { categoryInput = node}}>
+          <select className="query-filter__select query-filter__select--category" ref={node => { categoryInput = node}}>
             <option value="">Categories</option>
             {Object.keys(this.props.categories).length
               ? Object.values(this.props.categories).map(category => <option key={category.slug} value={category.slug}>{category.slug}</option>)
@@ -82,7 +82,7 @@ export default class TagFilter extends Component {
             }
           </select>
 
-          <select className="query-filter__select query-filter__select--tag [ layout__item ] [ lap-and-up-one-quarter ]" ref={node => { tagInput = node}}>
+          <select className="query-filter__select query-filter__select--tag" ref={node => { tagInput = node}}>
             <option value="">Tags</option>
             {Object.keys(this.props.tags).length
               ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
@@ -90,7 +90,7 @@ export default class TagFilter extends Component {
             }
           </select>
 
-          <input className="query-filter__input query-filter__input--search [ layout__item ] [ lap-and-up-one-half ]" type="text" placeholder="search" ref={node => {
+          <input className="query-filter__input query-filter__input--search" type="text" placeholder="search" ref={node => {
             searchInput = node;
           }} />
           <button className="query-filter__button query-filter__button--submit" type="submit"></button>

@@ -1,4 +1,5 @@
 :root {
+  --query-filter-bg:                transparent;
   --query-filter-height:            30px;
   --query-filter-button-background: var(--color-dark-light);
   --query-filter-button-text:       var(--color-base);
@@ -15,28 +16,30 @@
 
 .query-filter {
   position: relative;
-  width: 100%;
+  width: 40%;
+  border-bottom: 2px solid var(--query-filter-select-text);
 }
 
   .query-filter__select,
   .query-filter__input,
   .query-filter__button {
-    border-radius: var(--base-round);
+    border-radius: 0;
+    background: var(--query-filter-bg);
     height: var(--query-filter-height);
     line-height: var(--query-filter-height);
     border: none;
     outline: none;
-    border-bottom: 4px solid var(--query-filter-select-text);
   }
 
   .query-filter__select,
   .query-filter__input {
-    cursor: pointer;
     padding-right: var(--query-filter-padding--tiny);
     padding-left: var(--query-filter-padding--tiny);
   }
 
   .query-filter__select {
+    width: 30%;
+    cursor: pointer;
     -webkit-appearance: none;
     color: var(--query-filter-select-text);
     position: relative;
@@ -49,6 +52,7 @@
   }
 
     .query-filter__input--search {
+      width: 40%;
       padding-right: calc(var(--query-filter-padding--tiny) + var(--query-filter-height));
     }
 
@@ -65,7 +69,5 @@
       width: var(--query-filter-button-width);
       padding: 0;
       cursor: pointer;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
       @mixin fontsize 22px;
     }

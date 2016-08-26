@@ -19,6 +19,15 @@
   padding-bottom: var(--base-spacing-unit--large);
 }
 
+.band--small {
+  padding-top: var(--base-spacing-unit--small);
+  padding-bottom: var(--base-spacing-unit--small);
+  @media (--breakpoint-desk) {
+    padding-top: var(--base-spacing-unit);
+    padding-bottom: var(--base-spacing-unit);
+  }
+}
+
 .band--tiny {
   padding-top: var(--base-spacing-unit--tiny);
   padding-bottom: var(--base-spacing-unit--tiny);

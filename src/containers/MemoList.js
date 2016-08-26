@@ -33,18 +33,10 @@ class MemoList extends Component {
 
     return (
       <div>
-        <div className="[ band ]">
-          <div className="wrapper">
-            <div className="layout">
-              <div className="[ band--tiny ]">
-                <div className="[ layout__item ] [ lap-and-up-one-half ]">
-                  <div className="[ layout__item ] [ lap-and-up-one-tenth ]">
-                  </div>
-                  <div className="[ layout__item ] [ desk-three-quarters ]">
-                    <QueryFilter {...this.props} />
-                  </div>
-                </div>
-              </div>
+        <QueryFilter {...this.props} />
+        <div className="[ band--small ]">
+          <div className="[ wrapper ]">
+            <div className="[ layout layout--tiny ]">
               {
                 !allPosts.length
                   ? <Loading isFetching={isFetching} />

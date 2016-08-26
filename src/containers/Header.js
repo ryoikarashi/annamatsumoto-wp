@@ -11,8 +11,8 @@ class Header extends Component {
         </Link>
         <nav className="header__nav">
           <ul>
-            <li className="header__nav__item"><Link to="/me">ME</Link></li>
-            <li className="header__nav__item"><Link to="/works">WORKS</Link></li>
+            <li className="header__nav__item"><Link to="/me" activeClassName="active">ME</Link></li>
+            <li className="header__nav__item"><Link to="/works" activeClassName="active">WORKS</Link></li>
           </ul>
         </nav>
       </header>

@@ -1,16 +1,30 @@
+:root {
+  --post-bg--hover: rgba(255, 255, 255, .7);
+  --post-text:      var(--color-type);
+}
+
 .post {
   position: relative;
-  border: 2px solid var(--color-dark);
-  border-radius: var(--base-round);
   padding: 50%;
-  margin-bottom: var(--base-spacing-unit);
+  margin-bottom: var(--base-spacing-unit--tiny);
   overflow: scroll;
-  background: var(--color-base);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   @mixin transition all;
   &:hover {
-    background-color: var(--color-dark);
+    background-color: var(--post-bg--hover);
     .post__title {
-      color: var(--color-base);
+      opacity: 1;
+    }
+    .post__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--post-bg--hover);
     }
   }
 }
@@ -21,11 +35,16 @@
     margin: 0;
     padding-right: var(--base-spacing-unit);
     padding-left: var(--base-spacing-unit);
+    opacity: 0;
+    z-index: 10;
     @mixin fontsize 20px, 1.7;
-    @mixin transition color;
 
     @media (--breakpoint-lap-and-up) {
       padding-right: var(--base-spacing-unit--small);
       padding-left: var(--base-spacing-unit--small);
     }
+  }
+  .post__overlay {
+    background: transparent;
+    z-index: 1;
   }
