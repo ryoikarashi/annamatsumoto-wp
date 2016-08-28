@@ -14,7 +14,7 @@ blockquote {
   margin-right: var(--base-spacing-unit);
   margin-left:  var(--base-spacing-unit);
   padding-left: var(--base-spacing-unit);
-  border-left: 2px solid var(--color-quotes);
+  border-left: 5px solid var(--color-quotes);
   font-style: italic;
   p {
     text-indent: -0.41em;

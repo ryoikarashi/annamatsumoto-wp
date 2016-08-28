@@ -23,7 +23,7 @@
     font-weight: 100;
   }
   @if $font-weight == regular {
-    font-weight: 300;
+    font-weight: 400;
   }
   @if $font-weight == bold {
     font-weight: 600;
@@ -47,7 +47,7 @@
     font-size: calc( strip($font-size) / strip(var(--base-font-size)) * 1rem );
 
     @if $line-height == auto {
-      line-height: 1;
+      line-height: 1.8;
     }
     @else {
       line-height: $line-height;

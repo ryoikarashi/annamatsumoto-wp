@@ -5,13 +5,14 @@ class Top extends Component {
   randomBgImage() {
 
     let path = 'http://wocker.dev/wp-content/uploads/2016/02/2013.1.1014.jpeg';
+    const topBg = document.getElementById('top-bg')
 
     const add = () => {
-      document.body.style.backgroundImage = `url(${path})`;
+      topBg.style.backgroundImage = `url(${path})`;
     };
 
     const remove = () => {
-       document.body.style.backgroundImage = '';
+       topBg.style.backgroundImage = '';
     };
 
     return {
@@ -30,7 +31,9 @@ class Top extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        <span id="top-bg"></span>
+      </div>
     )
   }
 }

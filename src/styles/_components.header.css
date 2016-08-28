@@ -1,18 +1,24 @@
 :root {
+  --page-header-height:     100px;
   --page-header-background: var(--color-base);
   --page-header-text:       var(--color-type);
   --page-header-padding:    var(--base-spacing-unit);
-  --page-title-font-weight: 600;
+  --page-header-color-nav:  linear-gradient(to left, rgba(34,32,255,.4), rgba(90, 2, 90, .4));
 }
 
 .header {
   position: relative;
+  height: var(--page-header-height);
   background-color: var(--page-header-background);
   color: var(--color-base);
-  padding: var(--page-header-padding);
   @util clearfix;
 }
+
   .header__title {
+    position: absolute;
+    top: 50%;
+    left: var(--base-spacing-unit);
+    transform: translate(0, -50%);
     display: block;
     float: left;
     span {
@@ -22,30 +28,28 @@
     }
     @mixin attention {
       text-decoration: none;
-      span {
-        background: #000;
-        color: #FFF;
-      }
     }
   }
-    .header__title--en {
-      @mixin fontsize 18px;
-      font-weight: var(--page-title-font-weight);
-      margin-bottom: var(--base-spacing-unit--small);
-      letter-spacing: 0.025em;
-    }
-    .header__title--ja {
-      @mixin fontsize 16px;
-      font-weight: var(--page-title-font-weight);
+
+    .header__title__text {
+      @mixin font-weight regular;
       margin-bottom: 0;
-      letter-spacing: .3em;
+      position: relative;
     }
+      .header__title__text--en {
+        @mixin fontsize 18px;
+        letter-spacing: 0.025em;
+      }
+      .header__title__text--ja {
+        @mixin fontsize 16px;
+        letter-spacing: .3em;
+      }
+
   .header__nav {
     position: absolute;
-    top: var(--base-spacing-unit);
-    right: calc(var(--base-spacing-unit--large) * 2);
-    float: right;
-    display: block;
+    top: 50%;
+    right: var(--base-spacing-unit);
+    transform: translate(0, -50%);
     ul, li { list-style: none; }
     ul { @util clearfix; margin: 0; }
   }
@@ -54,7 +58,6 @@
       display: block;
       float: left;
       height: 100%;
-      line-height: 40px;
       margin-right: var(--base-spacing-unit--small);
       letter-spacing: 0.02em;
       &:last-child { margin-right: 0; }
@@ -72,12 +75,11 @@
           content: '';
           position: absolute;
           top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          background: rgba(34, 32, 255, .4);
+          left: 0;
+          transform: translate(0, -50%);
+          width: 100%;
+          height: 1px;
+          background: var(--page-header-color-nav);
           opacity: 0;
           @mixin transition opacity;
         }

@@ -4,6 +4,13 @@
   color: var(--color-headings);
 }
 
+/* Paragraph */
+p {
+  letter-spacing: .02em;
+  @mixin font-weight thin;
+  @mixin fontsize 18px;
+}
+
 /* Emboldened elements. */
 a,
 strong, b,
@@ -26,7 +33,7 @@ pre {
   background-color: var(--color-pre-background);
   border-radius: var(--base-round);
 
-  @media --desktop-lap-and-up {
+  @media (--breakpoint-lap-and-up) {
     margin-right: -var(--base-spacing-unit--small);
     margin-left:  -var(--base-spacing-unit--small);
   }

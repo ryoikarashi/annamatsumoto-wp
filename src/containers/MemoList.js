@@ -45,8 +45,10 @@ class MemoList extends Component {
             </div>
           </div>
         </div>
-        <div className="wrapper">
-          {!nextPageUrl ? '' : <Paginator {...this.props} /> }
+        <div className="[ band ]">
+          <div className="wrapper">
+            {!nextPageUrl ? '' : <Paginator {...this.props} /> }
+          </div>
         </div>
       </div>
     )
