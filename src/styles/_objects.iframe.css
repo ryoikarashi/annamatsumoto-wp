@@ -5,10 +5,10 @@
   overflow: hidden;
   &.wide {
     @media (--breakpoint-lap-and-up) {
-      padding-bottom: 76.25%;
+      padding-bottom: 61.875%; /* 110 * 0.5625 */
     }
     @media (--breakpoint-desk) {
-      padding-bottom: 96.25%;
+      padding-bottom: 78.75%; /* 140 * 0.5625 */
     }
   }
   iframe {

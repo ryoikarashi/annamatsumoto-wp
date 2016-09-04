@@ -2,7 +2,7 @@
   padding-top: 2.5em;
   padding-bottom: 8.5em;
 
-  p {
+  p, blockquote, audio {
     margin-top: var(--base-spacing-unit--large);
     margin-bottom: var(--base-spacing-unit--large);
   }
@@ -11,8 +11,8 @@
     margin-top: var(--base-spacing-unit--tiny);
     margin-bottom: var(--base-spacing-unit--tiny);
     @media (--breakpoint-lap-and-up) {
-      width: 120%;
-      margin-left: -10%;
+      width: 110%;
+      margin-left: -5%;
     }
     @media (--breakpoint-desk) {
       width: 140%;

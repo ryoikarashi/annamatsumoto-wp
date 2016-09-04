@@ -1,9 +1,8 @@
 :root {
-  --container-width--tiny:   340px;
-  --container-width--small:  400px;
-  --container-width:         680px;
-  --container-width--large:  960px;
-  --container-width--xlarge: 1200px;
+  --container-width--tiny:  30em;
+  --container-width--small: 45em;
+  --container-width:        60em;
+  --container-width--large: 75em;
 }
 
 .container {
@@ -13,5 +12,4 @@
   &.container--small  { max-width: var(--container-width--small); }
   &.container         { max-width: var(--container-width); }
   &.container--large  { max-width: var(--container-width--large); }
-  &.container--xlarge { max-width: var(--container-width--xlarge); }
 }
