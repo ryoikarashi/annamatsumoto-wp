@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadMe } from '../actions';
 import Loading from '../components/Loading';
+import { RouteTransition } from 'react-router-transition';
 
 const MeInfo = ({ me }) => (
   <div>
@@ -52,7 +53,20 @@ class Me extends Component {
               {
                 !me
                   ? <Loading isFetching={isFetching} />
-                  : <MeInfo me={me} />
+                  : <RouteTransition
+                      pathname={this.props.location.pathname}
+                      atEnter={{ opacity: 0 }}
+                      atLeave={{ opacity: 2 }}
+                      atActive={{ opacity: 1 }}
+                      mapStyles={styles => {
+                        if(styles.opacity > 1){
+                          return { display: 'none'}
+                        }
+                        return { opacity: styles.opacity}
+                      }}
+                    >
+                      <MeInfo me={me} />
+                    </RouteTransition>
               }
             </div>
           </div>

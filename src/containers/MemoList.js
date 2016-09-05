@@ -6,6 +6,7 @@ import { loadPosts } from '../actions';
 import Paginator from './Paginator';
 import QueryFilter from './QueryFilter';
 import { loadCategories, loadTags } from '../actions';
+import { RouteTransition } from 'react-router-transition';
 
 class MemoList extends Component {
 
@@ -40,7 +41,20 @@ class MemoList extends Component {
               {
                 !allPosts.length
                   ? <Loading isFetching={isFetching} />
-                  : allPosts.map(item => <MemoItem key={item.id} item={item} />)
+                  : <RouteTransition
+                      pathname={this.props.location.pathname}
+                      atEnter={{ opacity: 0 }}
+                      atLeave={{ opacity: 2 }}
+                      atActive={{ opacity: 1 }}
+                      mapStyles={styles => {
+                        if(styles.opacity > 1){
+                          return { display: 'none'}
+                        }
+                        return { opacity: styles.opacity}
+                      }}
+                    >
+                      { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
+                    </RouteTransition>
               }
             </div>
           </div>

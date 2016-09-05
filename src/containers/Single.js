@@ -7,6 +7,7 @@ import 'date-utils';
 import $ from 'jquery';
 import Loading from '../components/Loading';
 import { loadPosts } from '../actions';
+import { RouteTransition } from 'react-router-transition';
 
 class Single extends Component {
 
@@ -63,16 +64,29 @@ class Single extends Component {
         }
 
         {isEmpty
-          ?  <Loading isFetching={isFetching} />
-          :  <article className="entry" ref="post">
-              <div className="container">
-                <h1 className="entry__title">{item.title.rendered}</h1>
-                <time className="entry__time">
-                  created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
-                </time>
-                <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
-              </div>
-            </article>
+          ? <Loading isFetching={isFetching} />
+          : <RouteTransition
+              pathname={this.props.location.pathname}
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 2 }}
+              atActive={{ opacity: 1 }}
+              mapStyles={styles => {
+                if(styles.opacity > 1){
+                  return { display: 'none'}
+                }
+                return { opacity: styles.opacity}
+              }}
+            >
+              <article className="entry" ref="post">
+                <div className="container">
+                  <h1 className="entry__title">{item.title.rendered}</h1>
+                  <time className="entry__time">
+                    created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
+                  </time>
+                  <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
+                </div>
+              </article>
+            </RouteTransition>
         }
       </div>
     )
