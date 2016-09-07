@@ -37,26 +37,26 @@ class MemoList extends Component {
         <QueryFilter {...this.props} />
         <div className="[ band--small ]">
           <div className="[ wrapper ]">
-            <div className="[ layout layout--tiny ]">
-              {
-                !allPosts.length
-                  ? <Loading isFetching={isFetching} />
-                  : <RouteTransition
-                      pathname={this.props.location.pathname}
-                      atEnter={{ opacity: 0 }}
-                      atLeave={{ opacity: 2 }}
-                      atActive={{ opacity: 1 }}
-                      mapStyles={styles => {
-                        if(styles.opacity > 1){
-                          return { display: 'none'}
-                        }
-                        return { opacity: styles.opacity}
-                      }}
-                    >
+            {
+              !allPosts.length
+                ? <Loading isFetching={isFetching} />
+                : <RouteTransition
+                    pathname={this.props.location.pathname}
+                    atEnter={{ opacity: 0 }}
+                    atLeave={{ opacity: 2 }}
+                    atActive={{ opacity: 1 }}
+                    mapStyles={styles => {
+                      if(styles.opacity > 1){
+                        return { display: 'none'}
+                      }
+                      return { opacity: styles.opacity}
+                    }}
+                  >
+                    <div className="[ layout layout--tiny ]">
                       { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
-                    </RouteTransition>
-              }
-            </div>
+                    </div>
+                  </RouteTransition>
+            }
           </div>
         </div>
         <div className="[ band ]">

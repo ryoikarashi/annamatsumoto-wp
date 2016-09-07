@@ -3,7 +3,9 @@
   --page-header-background: var(--color-base);
   --page-header-text:       var(--color-type);
   --page-header-padding:    var(--base-spacing-unit);
-  --page-header-color-nav:  linear-gradient(to left, rgba(34,32,255,.4), rgba(90, 2, 90, .4));
+  /*--page-header-color-nav:  linear-gradient(to left, rgba(34,32,255,.4), rgba(90, 2, 90, .4));*/
+  /* tmp */
+  --page-header-color-nav:  #CCC;
 }
 
 .header {

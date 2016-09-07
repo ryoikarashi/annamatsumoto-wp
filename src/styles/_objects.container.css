@@ -8,8 +8,8 @@
 .container {
   margin: 0 auto;
 
+  &.container         { max-width: var(--container-width); }
   &.container--tiny   { max-width: var(--container-width--tiny); }
   &.container--small  { max-width: var(--container-width--small); }
-  &.container         { max-width: var(--container-width); }
   &.container--large  { max-width: var(--container-width--large); }
 }

@@ -31,6 +31,7 @@
 }
   .post__title {
     @util center;
+    width: 90%;
     display: inline-block;
     border-bottom: 1px solid var(--post-text-dark);
     text-align: center;
@@ -40,6 +41,9 @@
     opacity: 0;
     z-index: 10;
     @mixin fontsize 20px, 1.7;
+
+    /* tmp */
+    border-bottom: 1px solid #CCC;
 
     @media (--breakpoint-lap-and-up) {
       padding-right: var(--base-spacing-unit--small);
