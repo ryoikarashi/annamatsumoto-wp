@@ -16,6 +16,9 @@ PLUGINS=(
   rest-api
   wordpress-seo
   better-rest-api-featured-images
+  custom-post-type-ui
+  convert-post-types
+  download-attachments
 )
 
 PLUGINS_TO_REMOVE=(

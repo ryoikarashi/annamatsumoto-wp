@@ -63,4 +63,4 @@ const meSchemaArray = arrayOf(meSchema);
 export const fetchPosts = (params, url) => callApi(url, postSchemaArray);
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
-export const fetchMe = () => callApi('pages?name=me', meSchemaArray);
+export const fetchMe = () => callApi('pages?filter[name]=me', meSchemaArray);
