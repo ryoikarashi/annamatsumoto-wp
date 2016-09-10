@@ -23,7 +23,8 @@ const firstPagePostsUrl = params => {
     filter[name]=${params.slug}&
     filter[year]=${params.year}&
     filter[monthnum]=${params.month}&
-    filter[day]=${params.day}
+    filter[day]=${params.day}&
+    filter[orderby]=menu_order
   `;
 };
 

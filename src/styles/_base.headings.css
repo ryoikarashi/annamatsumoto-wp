@@ -9,10 +9,12 @@
 
 h1 {
     @mixin fontsize var(--heading-size-1);
+    @media (--breakpoint-mobile) { font-size: 20px; }
 }
 
 h2 {
     @mixin fontsize var(--heading-size-2);
+    @media (--breakpoint-mobile) { font-size: 18px; }
 }
 
 h3 {

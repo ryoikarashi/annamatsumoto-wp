@@ -70,6 +70,10 @@
         width: 100%;
         padding-right: var(--base-spacing-unit--small);
         padding-left: var(--base-spacing-unit--small);
+        @media (--breakpoint-mobile) {
+          padding-right: 0;
+          padding-left: 0;
+        }
         @mixin attention {
           text-decoration: none;
         }

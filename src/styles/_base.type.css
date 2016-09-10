@@ -7,8 +7,12 @@
 /* Paragraph */
 p {
   letter-spacing: .02em;
-  @mixin font-weight thin;
+  @mixin font-weight regular;
   @mixin fontsize 18px;
+
+  @media (--breakpoint-mobile) {
+    font-size: 16px;
+  }
 }
 
 /* Emboldened elements. */

@@ -22,6 +22,9 @@
   /* tmp */
   width: 15%;
   border-bottom: 1px solid #CCC;
+  @media (--breakpoint-mobile) {
+    width: 50%;
+  }
 }
 
   .query-filter__select,

@@ -4,7 +4,7 @@ class Top extends Component {
 
   randomBgImage() {
 
-    let path = 'http://wocker.dev/wp-content/uploads/2016/02/2013.1.1014.jpeg';
+    let path = '/wp-content/uploads/2016/02/2013.1.1014.jpg';
     const topBg = document.getElementById('top-bg')
 
     const add = () => {
