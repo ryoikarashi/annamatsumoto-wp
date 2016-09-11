@@ -19,13 +19,14 @@ PLUGINS=(
   custom-post-type-ui
   convert-post-types
   download-attachments
+  multi-device-switcher
 )
 
 PLUGINS_TO_REMOVE=(
   hello
 )
 
-ACF_PRO_KEY="b3JkZXJfaWQ9NjIxNjV8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTA4LTE5IDA1OjEyOjQx"
+ACF_PRO_KEY=`cat ./wp-acf-pro-key.txt`
 
 : "check if vagrant is up, otherwise restart vagrant" && {
   vagrant status | grep 'running' > /dev/null || {
