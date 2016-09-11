@@ -13,3 +13,4 @@ wp-deploy-plugins.sh
 wp-deploy-to-local-wp.sh
 wp-deploy-to-prod.sh
 dist/assets/main.css.map
+wp-acf-pro-key.txt
