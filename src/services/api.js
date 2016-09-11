@@ -45,10 +45,10 @@ function callApi(endpoint, schema) {
 }
 
 // Schemas for WP-API responses
-const postSchema = new Schema('posts', {
-  idAttribute: post => post.slug
+const workSchema = new Schema('works', {
+  idAttribute: work => work.slug
 });
-const postSchemaArray = arrayOf(postSchema);
+const workSchemaArray = arrayOf(workSchema);
 
 const tagSchema = new Schema('tags');
 const tagSchemaArray = arrayOf(tagSchema);
@@ -60,7 +60,7 @@ const meSchema = new Schema('me');
 const meSchemaArray = arrayOf(meSchema);
 
 // api services
-export const fetchPosts = (params, url) => callApi(url, postSchemaArray);
+export const fetchWorks = (params, url) => callApi(url, workSchemaArray);
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
 export const fetchMe = () => callApi('pages?filter[name]=me', meSchemaArray);

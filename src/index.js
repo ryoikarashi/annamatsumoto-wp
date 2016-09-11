@@ -3,9 +3,9 @@ import 'babel-polyfill';
 import './styles/main.css';
 
 import { render } from 'react-dom';
-import Root from './components/Root';
+import Root from './_App/Root';
 import configureStore from './store/configureStore';
-import rootSaga from './sagas';
+import rootSaga from './_App/sagas';
 
 import './utils/hotreloadExtractedFiles';
 

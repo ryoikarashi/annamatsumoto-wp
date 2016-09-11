@@ -7,7 +7,7 @@ export default class TagFilter extends Component {
   constructor(props) {
     super(props);
     this.goHome = this.goHome.bind(this);
-    this.selectPostsByTag = this.selectPostsByTag.bind(this);
+    this.selectWorksByTag = this.selectWorksByTag.bind(this);
   }
 
   initQueryFilter() {
@@ -21,14 +21,14 @@ export default class TagFilter extends Component {
     dispatch(push('/works'));
   }
 
-  getFilteredPosts(categoryInput, tagInput, searchInput) {
+  getFilteredWorks(categoryInput, tagInput, searchInput) {
 
-    const { dispatch, loadPosts } = this.props;
+    const { dispatch, loadWorks } = this.props;
 
     let fullUrl = '/works';
     let params = {};
 
-    // if there is no input, then show all posts again, if not, then show posts filtered by queries
+    // if there is no input, then show all works again, if not, then show works filtered by queries
     if (searchInput.value   !== '' || typeof searchInput.value   !== 'undefined' ||
         tagInput.value      !== '' || typeof tagInput.value      !== 'undefined' ||
         categoryInput.value !== '' || typeof categoryInput.value !== 'undefined')
@@ -49,15 +49,15 @@ export default class TagFilter extends Component {
       }
 
       dispatch(push(fullUrl));
-      loadPosts(fullUrl, params, false);
+      loadWorks(fullUrl, params, false);
     } else {
       dispatch(push('/works'))
-      loadPosts('/works', params, false);
+      loadWorks('/works', params, false);
     }
   }
 
-  selectPostsByTag(e) {
-    this.getFilteredPosts({value: ''}, {value: e.target.value}, {value: ''});
+  selectWorksByTag(e) {
+    this.getFilteredWorks({value: ''}, {value: e.target.value}, {value: ''});
   }
 
   componentDidMount() {
@@ -75,7 +75,7 @@ export default class TagFilter extends Component {
         <div className="[ wrapper ]">
           <form className="query-filter" onSubmit={e => {
             e.preventDefault();
-            this.getFilteredPosts(categoryInput, tagInput, searchInput);
+            this.getFilteredWorks(categoryInput, tagInput, searchInput);
           }}>
 
             { /* <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]" onClick={this.goHome}></i> */}
@@ -88,7 +88,7 @@ export default class TagFilter extends Component {
               }
             </select>
 
-            <select className="query-filter__select query-filter__select--tag" value="" onChange={this.selectPostsByTag} ref={node => { tagInput = node}}>
+            <select className="query-filter__select query-filter__select--tag" value="" onChange={this.selectWorksByTag} ref={node => { tagInput = node}}>
               <option value="">Tags</option>
               {Object.keys(this.props.tags).length
                 ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)

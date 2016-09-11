@@ -1,8 +1,9 @@
 import { Component } from 'react';
-import Helmet from 'react-helmet';
-import Header from '../containers/Header';
-import Footer from './Footer';
 import { RouteTransition } from 'react-router-transition';
+import Helmet from 'react-helmet';
+
+import Header from '../_Common/Header';
+import Footer from '../_Common/Footer';
 
 export default class App extends Component {
   render() {

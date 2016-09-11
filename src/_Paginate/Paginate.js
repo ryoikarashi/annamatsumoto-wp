@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadMorePosts } from '../actions';
+import { loadMoreWorks } from '../_Work/actions';
 
-class Paginator extends Component {
+class Paginate extends Component {
 
   constructor(props) {
     super(props);
@@ -10,14 +10,14 @@ class Paginator extends Component {
   }
 
   handleLoadMoreClick() {
-    const { loadMorePosts, filter, params } = this.props;
-    loadMorePosts(filter, params, true);
+    const { loadMoreWorks, filter, params } = this.props;
+    loadMoreWorks(filter, params, true);
   }
 
   render() {
     return (
       <button className="load-more-button [ btn btn--small ]" onClick={this.handleLoadMoreClick}>
-        {this.props.postsPagination.isFetching
+        {this.props.worksPagination.isFetching
           ? 'Loading...' : 'Load More'
         }
       </button>
@@ -34,4 +34,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { loadMorePosts })(Paginator);
+export default connect(mapStateToProps, { loadMoreWorks })(Paginate);

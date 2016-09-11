@@ -5,8 +5,8 @@ import Helmet from 'react-helmet';
 import hljs from 'highlight.js';
 import 'date-utils';
 import $ from 'jquery';
-import Loading from '../components/Loading';
-import { loadPosts } from '../actions';
+import Loading from '../_Common/Loading';
+import { loadWorks } from './actions';
 import { RouteTransition } from 'react-router-transition';
 
 class Single extends Component {
@@ -32,8 +32,8 @@ class Single extends Component {
   }
 
   componentDidMount() {
-    const { filter, params, loadPosts } = this.props;
-    loadPosts(filter, params);
+    const { filter, params, loadWorks } = this.props;
+    loadWorks(filter, params);
     this.highlightBlock();
     this.addParagraphFlag();
   }
@@ -48,12 +48,12 @@ class Single extends Component {
   render() {
 
     const {
-      allPosts,
-      postsPagination: { isFetching }
+      allWorks,
+      worksPagination: { isFetching }
     } = this.props;
 
-    const isEmpty = allPosts.length === 0;
-    const item = allPosts[0];
+    const isEmpty = allWorks.length === 0;
+    const item = allWorks[0];
 
     return (
       <div>
@@ -97,18 +97,18 @@ function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
 
   const {
-    pagination: { postsByFilter },
-    entities: { posts }
+    pagination: { worksByFilter },
+    entities: { works }
   } = state;
 
-  const postsPagination = postsByFilter[filter] || { ids: [] };
-  const allPosts = postsPagination.ids.map(id => posts[id]);
+  const worksPagination = worksByFilter[filter] || { ids: [] };
+  const allWorks = worksPagination.ids.map(id => works[id]);
 
   return {
-    allPosts,
+    allWorks,
     filter,
-    postsPagination
+    worksPagination
   };
 }
 
-export default connect(mapStateToProps, { loadPosts })(Single);
+export default connect(mapStateToProps, { loadWorks })(Single);

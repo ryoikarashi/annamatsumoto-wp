@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import union from 'lodash/union';
 
-export default function paginate({ types, mapActionToKey }) {
+function paginate({ types, mapActionToKey }) {
 
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected types to be an array of three elements.');
@@ -62,3 +62,17 @@ export default function paginate({ types, mapActionToKey }) {
     }
   }
 }
+
+import { WORKS } from '../_Work/actions';
+import { combineReducers } from 'redux';
+
+export const pagination = combineReducers({
+  worksByFilter: paginate({
+    mapActionToKey: action => action.filter,
+    types: [
+      WORKS.REQUEST,
+      WORKS.SUCCESS,
+      WORKS.FAILURE
+    ]
+  })
+});

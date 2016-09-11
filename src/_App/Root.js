@@ -1,8 +1,7 @@
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-// import { history } from '../services';
-import { syncHistoryWithStore } from 'react-router-redux'
-import routes from '../routes';
+import { syncHistoryWithStore } from 'react-router-redux';
+import routes from './routes';
 
 const Root = ({store}) => {
 

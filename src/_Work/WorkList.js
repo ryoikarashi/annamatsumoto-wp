@@ -1,44 +1,44 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import MemoItem from '../components/MemoItem';
-import Loading from '../components/Loading';
-import { loadPosts } from '../actions';
-import Paginator from './Paginator';
-import QueryFilter from './QueryFilter';
-import { loadCategories, loadTags } from '../actions';
+import WorkItem from './WorkItem';
+import Loading from '../_Common/Loading';
+import { loadWorks } from './actions';
+import Pagination from '../_Paginate/Paginate';
+import WorkFilter from './WorkFilter';
+import { loadCategories, loadTags } from '../taxonomy/actions';
 import { RouteTransition } from 'react-router-transition';
 
 class MemoList extends Component {
 
-  loadPosts() {
-    const { filter, loadPosts, params } = this.props;
-    loadPosts(filter, params);
+  loadWorks() {
+    const { filter, loadWorks, params } = this.props;
+    loadWorks(filter, params);
   }
 
   componentWillMount() {
-    this.loadPosts();
+    this.loadWorks();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter !== this.props.filter) {
-      this.loadPosts(nextProps.filter, nextProps.params);
+      this.loadWorks(nextProps.filter, nextProps.params);
     }
   }
 
   render() {
     const {
-      allPosts,
+      allWorks,
       nextPageUrl,
-      postsPagination: { isFetching }
+      worksPagination: { isFetching }
     } = this.props;
 
     return (
       <div>
-        <QueryFilter {...this.props} />
+        <WorkFilter {...this.props} />
         <div className="[ band--small ]">
           <div className="[ wrapper ]">
             {
-              !allPosts.length
+              !allWorks.length
                 ? <Loading isFetching={isFetching} />
                 : <RouteTransition
                     pathname={this.props.location.pathname}
@@ -53,7 +53,7 @@ class MemoList extends Component {
                     }}
                   >
                     <div className="[ layout layout--tiny ]">
-                      { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
+                      { allWorks.map(item => <WorkItem key={item.id} item={item} />) }
                     </div>
                   </RouteTransition>
             }
@@ -61,7 +61,7 @@ class MemoList extends Component {
         </div>
         <div className="[ band ]">
           <div className="wrapper">
-            {!nextPageUrl ? '' : <Paginator {...this.props} /> }
+            {!nextPageUrl ? '' : <Pagination {...this.props} /> }
           </div>
         </div>
       </div>
@@ -74,22 +74,22 @@ function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
 
   const {
-    pagination: { postsByFilter },
-    entities: { posts, tags, categories }
+    pagination: { worksByFilter },
+    entities: { works, tags, categories }
   } = state;
 
-  const postsPagination = postsByFilter[filter] || { ids: [] };
-  const allPosts = postsPagination.ids.map(id => posts[id]);
-  const { nextPageUrl } = postsPagination;
+  const worksPagination = worksByFilter[filter] || { ids: [] };
+  const allWorks = worksPagination.ids.map(id => works[id]);
+  const { nextPageUrl } = worksPagination;
 
   return {
     tags,
     categories,
-    allPosts,
+    allWorks,
     filter,
-    postsPagination,
+    worksPagination,
     nextPageUrl
   };
 }
 
-export default connect(mapStateToProps, { loadPosts, loadCategories, loadTags })(MemoList);
+export default connect(mapStateToProps, { loadWorks, loadCategories, loadTags })(MemoList);

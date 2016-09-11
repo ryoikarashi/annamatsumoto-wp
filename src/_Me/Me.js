@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadMe } from '../actions';
-import Loading from '../components/Loading';
+import { loadMe } from './actions';
+import Loading from '../_Common/Loading';
 import { RouteTransition } from 'react-router-transition';
 
 const MeInfo = ({ me }) => (
