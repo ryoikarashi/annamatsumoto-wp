@@ -14,3 +14,6 @@ wp-deploy-to-local-wp.sh
 wp-deploy-to-prod.sh
 dist/assets/main.css.map
 wp-acf-pro-key.txt
+wp-deploy-plugins-to-prod.sh
+wp-deploy-plugins-to-staging.sh
+wp-deploy-to-staging.sh

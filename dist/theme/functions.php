@@ -14,7 +14,7 @@ function sb_add_cpts_to_api() {
 add_action( 'init', 'sb_add_cpts_to_api', 30 );
 
 add_action( 'rest_api_init', function() {
- register_api_field(['notes', 'works'],
+ register_api_field('works',
     'yoast',
     array(
        'get_callback'    => 'get_yoast',
