@@ -1,11 +1,14 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var browserslist = require('browserslist');
 
 module.exports = {
   devtool: 'eval-cheap-module-source-map',
   entry: [
-    'babel-polyfill', './src/index.js',
+    'babel-polyfill',
+    'eventsource-polyfill',
+    './src/index.js',
     'webpack-hot-middleware/client',
     './src/index.js'
   ],
@@ -32,10 +35,10 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader?autoprefixer&sourceMap', 'postcss-loader'])
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader?-autoprefixer&sourceMap', 'postcss-loader'])
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+        test: /\.(eot|woff|woff2|ttf)(\?\S*)?$/,
         loader: 'file?name=fonts/[name].[ext]'
       },
       {
@@ -46,6 +49,7 @@ module.exports = {
   },
   postcss: function(webpack) {
     return [
+      require('postcss-reporter')(),
       require('postcss-easy-import')({addDependencyTo: webpack,prefix: '_'}),
       require('postcss-nested')(),
       require('postcss-url')(),
@@ -61,10 +65,13 @@ module.exports = {
       require('postcss-conditionals')(),
       require('postcss-calc')({warnWhenCannotResolve: true}),
       require('postcss-cssnext')({browsers: 'last 2 versions'}),
+      require('autoprefixer')({
+        browsers: browserslist('last 2 versions, ie >= 9'),
+        remove: false
+      }),
       require('css-mqpacker')(),
       require('postcss-utilities')(),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
+      require('postcss-browser-reporter')()
     ];
   },
   eslint: {

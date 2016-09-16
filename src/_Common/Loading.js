@@ -4,7 +4,11 @@ const Loading = ({isFetching}) => (
       <div className="inner">
         {
           isFetching
-            ? <h2 className="loading__title">Loading...</h2>
+            ? <div>
+                <div className="loading__dot" />
+                <div className="loading__dot" />
+                <div className="loading__dot" />
+              </div>
             : <h2 className="loading__title">Sorry, no posts found... :(</h2>
         }
       </div>

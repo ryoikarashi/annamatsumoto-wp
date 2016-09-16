@@ -54,5 +54,5 @@
     z-index: 1;
     background: transparent;
     opacity: 0;
-    @mixin transition all;
+    @mixin transition opacity;
   }
