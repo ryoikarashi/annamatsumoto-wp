@@ -6,6 +6,7 @@
   --color-base:       #FFF;
   --color-type:       #444;
   --color-program:    rgba(0,0,0,.01);
+  --color-light-white: rgba(255, 255, 255, .85);
 
   /* Background */
   --color-background: var(--color-base);

@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { Link } from 'react-router';
+import Radium from 'radium';
 
-export default class MemoList extends Component {
+class MemoList extends Component {
   constructor(props) {
     super(props);
   }
@@ -26,10 +27,20 @@ export default class MemoList extends Component {
       } else {
         thumbnailUrl = thumbnailUrl.source_url;
       }
-      return getFeaturedImage(thumbnailUrl);
-    } else {
-      return getRandomGradientBg();
     }
+
+    return {
+      gradient: getRandomGradientBg(),
+      image: getFeaturedImage(thumbnailUrl)
+    };
+  }
+
+  hasThumbnail() {
+    const { item } = this.props;
+    let thumbnailUrl = item.better_featured_image;
+
+    if (thumbnailUrl) return true;
+    return false;
   }
 
   render() {
@@ -38,12 +49,15 @@ export default class MemoList extends Component {
     return (
       <div className="[ layout__item ] [ lap-and-up-one-third--square palm-one-half mobile-one-whole ]">
         <Link to={`/works/${item.slug}`}>
-          <article className="post" style={{backgroundImage: this.getItemBg()}}>
+          <article className="post" style={{backgroundImage: this.hasThumbnail() ? this.getItemBg().image : this.getItemBg().gradient}}>
             <h1 className="post__title">{item.title.rendered}</h1>
-            <span className="post__overlay"></span>
+            <span className="post__overlay" style={{":hover": { background: this.getItemBg().gradient }}}
+            />
           </article>
         </Link>
       </div>
     )
   }
 }
+
+export default Radium(MemoList);

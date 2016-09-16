@@ -15,7 +15,6 @@
   background-size: cover;
   @mixin transition all;
   &:hover {
-    background-color: var(--post-bg--hover);
     .post__title {
       opacity: 1;
     }
@@ -25,25 +24,26 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--post-bg--hover);
+      opacity: 1;
     }
   }
 }
   .post__title {
     @util center;
-    width: 90%;
+    max-width: 90%;
+    width: auto;
     display: inline-block;
-    border-bottom: 1px solid var(--post-text-dark);
     text-align: center;
     margin: 0;
     padding-right: var(--base-spacing-unit);
     padding-left: var(--base-spacing-unit);
     opacity: 0;
     z-index: 10;
+    color: var(--color-base);
+    border: 2px solid var(--color-base);
+    border-radius: 2px;
     @mixin fontsize 20px, 1.7;
-
-    /* tmp */
-    border-bottom: 1px solid #CCC;
+    @mixin transition opacity;
 
     @media (--breakpoint-lap-and-up) {
       padding-right: var(--base-spacing-unit--small);
@@ -51,6 +51,8 @@
     }
   }
   .post__overlay {
-    background: transparent;
     z-index: 1;
+    background: transparent;
+    opacity: 0;
+    @mixin transition all;
   }
