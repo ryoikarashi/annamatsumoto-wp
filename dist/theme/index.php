@@ -5,30 +5,31 @@
 | Author      | Ryo Ikarashi                             |
 | Twitter     | https://twitter.com/ryo_ikarashi         |
 | Github      | https://github.com/RyoIkarashi           |
+| Contact     | me@ryoikarashi.com                       |
 ----------------------------------------------------------
 -->
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Anna Matsumoto's portfolio site.">
+  <meta name="description" content="Anna Matsumoto portfolio site.">
 
-  <meta property="og:title" content="Anna Matsumoto's portfolio site." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://annamatsumoto.com" />
-  <meta property="og:image" content="http://annamatsumoto.com/assets/og-image.png" />
-  <meta property="og:site_name" content="Anna Matsumoto" />
-  <meta property="og:description" content="Anna Matsumoto's portfolio site." />
+  <meta property="og:title" content="Anna Matsumoto (松本杏菜)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://annamatsumoto.com">
+  <meta property="og:image" content="http://annamatsumoto.com/assets/og-image.png">
+  <meta property="og:site_name" content="Anna Matsumoto (松本杏菜)">
+  <meta property="og:description" content="Anna Matsumoto portfolio site.">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Anna Matsumoto">
+  <meta name="twitter:title" content="Anna Matsumoto (松本杏菜)">
   <meta name="twitter:creator" content="@anna7h">
-  <meta name="twitter:description" content="Anna Matsumoto's portfolio site.">
+  <meta name="twitter:description" content="Anna Matsumoto portfolio site.">
   <meta name="twitter:url" content="http://annamatsumoto.com">
-  <meta name="twitter:image" content="http://annamatsumoto.com/assets/og-image.png">
-  <meta property="fb:app_id" content="1586852461591160" />
+  <meta name="twitter:image" content="http://annamatsumoto.com/assets/og-image.jpg">
+  <meta property="fb:app_id" content="341626932839504">
   <meta property="fb:admins" content="100002542111748">
-  <meta property="article:publisher" content="https://www.facebook.com/anna.matsumoto.75" />
+  <meta property="article:publisher" content="https://www.facebook.com/anna.matsumoto.75">
 
   <!-- Ionicons CDN -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -61,22 +62,21 @@
   <script src="//platform.twitter.com/widgets.js" async="" charset="utf-8"></script>
 
   <!-- Google Analytics -->
-  <!-- <script>
+  <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-54659896-7', 'auto');
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-84271792-1', 'auto');
     ga('send', 'pageview');
-  </script> -->
+  </script>
 
-  <!-- <script>
+  <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1586852461591160',
+        appId      : '341626932839504',
         xfbml      : true,
-        version    : 'v2.3'
+        version    : 'v2.7'
       });
     };
 
@@ -87,7 +87,7 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
-  </script> -->
+  </script>
 
 </head>
 
