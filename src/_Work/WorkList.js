@@ -6,7 +6,7 @@ import { loadWorks } from './actions';
 import Pagination from '../_Paginate/Paginate';
 import WorkFilter from './WorkFilter';
 import { loadCategories, loadTags } from '../taxonomy/actions';
-import { RouteTransition } from 'react-router-transition';
+import PageTransition from '../_Common/PageTransition';
 
 class MemoList extends Component {
 
@@ -27,6 +27,7 @@ class MemoList extends Component {
 
   render() {
     const {
+      location,
       allWorks,
       nextPageUrl,
       worksPagination: { isFetching }
@@ -40,30 +41,22 @@ class MemoList extends Component {
             {
               !allWorks.length
                 ? <Loading isFetching={isFetching} />
-                : <RouteTransition
-                    pathname={this.props.location.pathname}
-                    atEnter={{ opacity: 0 }}
-                    atLeave={{ opacity: 2 }}
-                    atActive={{ opacity: 1 }}
-                    mapStyles={styles => {
-                      if(styles.opacity > 1){
-                        return { display: 'none'}
-                      }
-                      return { opacity: styles.opacity}
-                    }}
-                  >
+                : <PageTransition location={location}>
                     <div className="[ layout layout--tiny ]">
                       { allWorks.map(item => <WorkItem key={item.id} item={item} />) }
                     </div>
-                  </RouteTransition>
+                  </PageTransition>
             }
           </div>
         </div>
-        <div className="[ band ]">
-          <div className="wrapper">
-            {!nextPageUrl ? '' : <Pagination {...this.props} /> }
-          </div>
-        </div>
+        {nextPageUrl
+          ? <div className="[ band ]">
+              <div className="wrapper">
+                <Pagination {...this.props} />
+              </div>
+            </div>
+          : ''
+        }
       </div>
     )
   }

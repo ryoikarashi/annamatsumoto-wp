@@ -7,7 +7,7 @@ import 'date-utils';
 import $ from 'jquery';
 import Loading from '../_Common/Loading';
 import { loadWorks } from './actions';
-import { RouteTransition } from 'react-router-transition';
+import PageTransition from '../_Common/PageTransition';
 
 class Single extends Component {
 
@@ -48,6 +48,7 @@ class Single extends Component {
   render() {
 
     const {
+      location,
       allWorks,
       worksPagination: { isFetching }
     } = this.props;
@@ -65,18 +66,7 @@ class Single extends Component {
 
         {isEmpty
           ? <Loading isFetching={isFetching} />
-          : <RouteTransition
-              pathname={this.props.location.pathname}
-              atEnter={{ opacity: 0 }}
-              atLeave={{ opacity: 2 }}
-              atActive={{ opacity: 1 }}
-              mapStyles={styles => {
-                if(styles.opacity > 1){
-                  return { display: 'none'}
-                }
-                return { opacity: styles.opacity}
-              }}
-            >
+          : <PageTransition location={location}>
               <article className="entry" ref="post">
                 <div className="container">
                   <h1 className="entry__title">{item.title.rendered}</h1>
@@ -86,7 +76,7 @@ class Single extends Component {
                   <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
                 </div>
               </article>
-            </RouteTransition>
+            </PageTransition>
         }
       </div>
     )

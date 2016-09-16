@@ -8,11 +8,14 @@ class Top extends Component {
 
   randomBgImage() {
 
-    let path = '/wp-content/uploads/2016/02/2013.1.1014.jpg';
-    const topBg = document.getElementById('top-bg')
+    const { protocol } = window.location;
+    let { hostname } = window.location;
+    hostname = hostname === 'localhost' ? 'wocker.dev' : hostname;
+    const imgPath = `${protocol}//${hostname}/wp-content/uploads/2016/02/2013.1.1014.jpg`;
+    const topBg = this.refs.topBg;
 
     const add = () => {
-      topBg.style.backgroundImage = `url(${path})`;
+      topBg.style.backgroundImage = `url(${imgPath})`;
     };
 
     const remove = () => {
@@ -31,7 +34,7 @@ class Top extends Component {
 
   componentDidMount() {
     const { isFetching } = this.props;
-    if(isFetching)
+    if(!isFetching)
       this.randomBgImage().add();
   }
 
@@ -41,21 +44,21 @@ class Top extends Component {
 
   componentDidUpdate() {
     const { isFetching } = this.props;
-    if(isFetching)
+    if(!isFetching)
       this.randomBgImage().add();
   }
 
   render() {
 
-    const { top, isFetching, location } = this.props;
+    const { isFetching, location } = this.props;
 
     return (
       <div>
         {
-          !top
+          isFetching
             ? <Loading isFetching={isFetching} />
             : <PageTransition location={location}>
-                <span id="top-bg"></span>
+                <span id="top-bg" ref="topBg"></span>
               </PageTransition>
         }
       </div>

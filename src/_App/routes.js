@@ -15,11 +15,6 @@ export default (
     <Route path="works" component={WorkList} />
     <Route path="works/:slug" component={WorkSingle} />
 
-    <Route path="works/category/:category"component={WorkList} />
-    <Route path="works/category/:category/search/:search" component={WorkList} />
-    <Route path="works/category/:category/tag/:tag" component={WorkList} />
-    <Route path="works/category/:category/tag/:tag/search/:search" component={WorkList} />
-
     <Route path="works/tag/:tag" component={WorkList} />
     <Route path="works/tag/:tag/search/:search" component={WorkList} />
 
