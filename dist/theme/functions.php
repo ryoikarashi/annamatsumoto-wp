@@ -11,10 +11,10 @@ function sb_add_cpts_to_api() {
       $wp_post_types[$key]->rest_base = $key;
     }
 }
-add_action( 'init', 'sb_add_cpts_to_api', 30 );
+add_action( 'init', 'sb_add_cpts_to_api', 11 );
 
 add_action( 'rest_api_init', function() {
- register_api_field('works',
+ register_rest_field(['notes','works'],
     'yoast',
     array(
        'get_callback'    => 'get_yoast',

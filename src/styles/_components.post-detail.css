@@ -7,9 +7,18 @@
     margin-bottom: var(--base-spacing-unit--large);
   }
 
+  p {
+    @media (--breakpoint-palm-and-down) {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   .wide {
     margin-top: var(--base-spacing-unit--tiny);
     margin-bottom: var(--base-spacing-unit--tiny);
+    width: 100%;
     @media (--breakpoint-lap-and-up) {
       width: 110%;
       margin-left: -5%;
