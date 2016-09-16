@@ -3,12 +3,32 @@ import Helmet from 'react-helmet';
 import PageTransition from '../_Common/PageTransition';
 import Header from '../_Common/Header';
 import Footer from '../_Common/Footer';
+import { titles } from '../data';
 
 export default class App extends Component {
+
+  handlePageTitle(pathname) {
+    switch(pathname) {
+      case '/':
+        return titles.top;
+      case '/me':
+      case '/me/':
+        return titles.me;
+      case '/works':
+      case '/works/':
+        return titles.works;
+      default:
+        return titles.notFound;
+    }
+  }
+
   render() {
+
+    const { pathname } = this.props.location;
+
     return (
       <div>
-        <Helmet title="ANNA MATSUMOTO" />
+        <Helmet title={this.handlePageTitle(pathname)} />
           <PageTransition location={this.props.location}>
             <Header />
               <main className="main">
