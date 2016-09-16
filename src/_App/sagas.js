@@ -2,6 +2,7 @@ import { put, call, fork } from 'redux-saga/effects';
 
 import { watchLoadWorks, watchLoadMoreWorks } from '../_Work/sagas';
 import { watchLoadMe } from '../_Me/sagas';
+import { watchLoadTop } from '../_Top/sagas';
 import { watchLoadCategories, watchLoadTags } from '../taxonomy/sagas';
 
 export function* fetchEntity(entity, apiFn, id, params, url) {
@@ -19,6 +20,7 @@ export default function* root() {
     fork(watchLoadMoreWorks),
     fork(watchLoadTags),
     fork(watchLoadCategories),
-    fork(watchLoadMe)
+    fork(watchLoadMe),
+    fork(watchLoadTop)
   ]
 }

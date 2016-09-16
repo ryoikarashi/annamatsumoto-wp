@@ -3,13 +3,15 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import { pagination } from '../_Paginate/reducers';
 import { me } from '../_Me/reducers';
+import { top } from '../_Top/reducers';
 
 const entities = (
   state = {
     works: {},
     tags: {},
     categories: {},
-    me: {}
+    me: {},
+    top: {}
   }, action) => {
 
   if (action.response && action.response.entities) {
@@ -22,7 +24,8 @@ const rootReducer = combineReducers({
   routing,
   entities,
   pagination,
-  me
+  me,
+  top
 });
 
 export default rootReducer;

@@ -1,7 +1,6 @@
 import { Component } from 'react';
-import { RouteTransition } from 'react-router-transition';
 import Helmet from 'react-helmet';
-
+import PageTransition from '../_Common/PageTransition';
 import Header from '../_Common/Header';
 import Footer from '../_Common/Footer';
 
@@ -10,24 +9,13 @@ export default class App extends Component {
     return (
       <div>
         <Helmet title="ANNA MATSUMOTO" />
-          <RouteTransition
-            pathname={this.props.location.pathname}
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 2 }}
-            atActive={{ opacity: 1 }}
-            mapStyles={styles => {
-              if(styles.opacity > 1){
-                return { display: 'none'}
-              }
-              return { opacity: styles.opacity}
-            }}
-          >
+          <PageTransition location={this.props.location}>
             <Header />
               <main className="main">
                 {this.props.children}
               </main>
             <Footer />
-          </RouteTransition>
+          </PageTransition>
       </div>
     );
   }

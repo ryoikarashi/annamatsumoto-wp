@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadMe } from './actions';
 import Loading from '../_Common/Loading';
-import { RouteTransition } from 'react-router-transition';
+import PageTransition from '../_Common/PageTransition';
 
 const MeInfo = ({ me }) => (
   <div className="[ layout layout--flush ]">
@@ -41,7 +41,7 @@ class Me extends Component {
 
   render() {
 
-    const { me, isFetching } = this.props;
+    const { me, isFetching, location } = this.props;
 
     return (
       <div>
@@ -51,20 +51,9 @@ class Me extends Component {
               {
                 !me
                   ? <Loading isFetching={isFetching} />
-                  : <RouteTransition
-                      pathname={this.props.location.pathname}
-                      atEnter={{ opacity: 0 }}
-                      atLeave={{ opacity: 2 }}
-                      atActive={{ opacity: 1 }}
-                      mapStyles={styles => {
-                        if(styles.opacity > 1){
-                          return { display: 'none'}
-                        }
-                        return { opacity: styles.opacity}
-                      }}
-                    >
+                  : <PageTransition location={location}>
                       <MeInfo me={me} />
-                    </RouteTransition>
+                    </PageTransition>
               }
             </div>
           </div>

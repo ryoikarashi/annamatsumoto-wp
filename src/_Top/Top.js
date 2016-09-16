@@ -1,4 +1,8 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadTop } from './actions';
+import Loading from '../_Common/Loading';
+import PageTransition from '../_Common/PageTransition';
 
 class Top extends Component {
 
@@ -21,21 +25,57 @@ class Top extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.loadTop();
+  }
+
   componentDidMount() {
-    this.randomBgImage().add();
+    const { isFetching } = this.props;
+    if(isFetching)
+      this.randomBgImage().add();
   }
 
   componentWillUnmount() {
     this.randomBgImage().remove();
   }
 
+  componentDidUpdate() {
+    const { isFetching } = this.props;
+    if(isFetching)
+      this.randomBgImage().add();
+  }
+
   render() {
+
+    const { top, isFetching, location } = this.props;
+
     return (
       <div>
-        <span id="top-bg"></span>
+        {
+          !top
+            ? <Loading isFetching={isFetching} />
+            : <PageTransition location={location}>
+                <span id="top-bg"></span>
+              </PageTransition>
+        }
       </div>
     )
   }
 }
 
-export default Top;
+function mapStateToProps(state) {
+
+  const {
+    top: { isFetching },
+    entities: { top }
+  } = state;
+
+  let topInfo = top[Object.keys(top)[0]];
+
+  return {
+    top: topInfo,
+    isFetching
+  };
+}
+
+export default connect(mapStateToProps, { loadTop })(Top);

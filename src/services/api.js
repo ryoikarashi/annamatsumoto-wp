@@ -59,8 +59,12 @@ const categorySchemaArray = arrayOf(categorySchema);
 const meSchema = new Schema('me');
 const meSchemaArray = arrayOf(meSchema);
 
+const topSchema = new Schema('top');
+const topSchemaArray = arrayOf(topSchema);
+
 // api services
 export const fetchWorks = (params, url) => callApi(url, workSchemaArray);
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
 export const fetchMe = () => callApi('pages?filter[name]=me', meSchemaArray);
+export const fetchTop = () => callApi('pages?filter[name]=top', topSchemaArray);
