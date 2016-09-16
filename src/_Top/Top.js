@@ -1,65 +1,37 @@
+/* eslint-disable no-extra-boolean-cast */
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTop } from './actions';
+import { Preload } from 'react-preload';
 import Loading from '../_Common/Loading';
 import PageTransition from '../_Common/PageTransition';
 
 class Top extends Component {
 
-  randomBgImage() {
-
-    const { protocol } = window.location;
-    let { hostname } = window.location;
-    hostname = hostname === 'localhost' ? 'wocker.dev' : hostname;
-    const imgPath = `${protocol}//${hostname}/wp-content/uploads/2016/02/2013.1.1014.jpg`;
-    const topBg = this.refs.topBg;
-
-    const add = () => {
-      topBg.style.backgroundImage = `url(${imgPath})`;
-    };
-
-    const remove = () => {
-       topBg.style.backgroundImage = '';
-    };
-
-    return {
-      add: add,
-      remove: remove
-    };
-  }
-
   componentWillMount() {
     this.props.loadTop();
   }
 
-  componentDidMount() {
-    const { isFetching } = this.props;
-    if(!isFetching)
-      this.randomBgImage().add();
-  }
-
-  componentWillUnmount() {
-    this.randomBgImage().remove();
-  }
-
-  componentDidUpdate() {
-    const { isFetching } = this.props;
-    if(!isFetching)
-      this.randomBgImage().add();
-  }
-
   render() {
 
-    const { isFetching, location } = this.props;
+    const { isFetching, location, top } = this.props;
 
     return (
       <div>
         {
-          isFetching
+          !top
             ? <Loading isFetching={isFetching} />
-            : <PageTransition location={location}>
-                <span id="top-bg" ref="topBg"></span>
-              </PageTransition>
+            : <Preload
+                loadingIndicator={<Loading isFetching={true} />}
+                images={this.props.top.acf.top_bg_images}
+                onSuccess={this.randomBgImage}
+                resolveOnError={true}
+                mountChildren={true}
+                >
+                  <PageTransition location={location}>
+                    <span id="top-bg" style={{backgroundImage: `url(${this.props.top.acf.top_bg_images[Math.floor(Math.random() * this.props.top.acf.top_bg_images.length)].image})`}} />
+                  </PageTransition>
+              </Preload>
         }
       </div>
     )
