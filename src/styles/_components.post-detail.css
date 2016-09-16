@@ -5,6 +5,11 @@
   p, blockquote, audio {
     margin-top: var(--base-spacing-unit--large);
     margin-bottom: var(--base-spacing-unit--large);
+
+    @media (--breakpoint-mobile) {
+      margin-top: var(--base-spacing-unit);
+      margin-bottom: var(--base-spacing-unit);
+    }
   }
 
   p {
@@ -51,6 +56,10 @@
       color: var(--color-light);
       @mixin font-weight thin;
       @mixin fontsize 18px;
+
+      @media (--breakpoint-mobile) {
+        font-size: 14px;
+      }
 
       & > a {
         margin-left: var(--base-spacing-unit--tiny);

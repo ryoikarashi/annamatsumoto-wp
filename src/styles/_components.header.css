@@ -3,9 +3,7 @@
   --page-header-background: var(--color-base);
   --page-header-text:       var(--color-type);
   --page-header-padding:    var(--base-spacing-unit);
-  /*--page-header-color-nav:  linear-gradient(to left, rgba(34,32,255,.4), rgba(90, 2, 90, .4));*/
-  /* tmp */
-  --page-header-color-nav:  #CCC;
+  --page-header-color-nav:  #888;
 }
 
 .header {
@@ -23,6 +21,9 @@
     transform: translate(0, -50%);
     display: block;
     float: left;
+    @media (--breakpoint-mobile) {
+      left: var(--base-spacing-unit--tiny);
+    }
     span {
       padding-right: var(--base-spacing-unit--tiny);
       padding-left: var(--base-spacing-unit--tiny);
@@ -41,6 +42,10 @@
       .header__title__text--en {
         @mixin fontsize 18px;
         letter-spacing: 0.025em;
+
+        @media (--breakpoint-mobile) {
+          line-height: 1.4;
+        }
       }
       .header__title__text--ja {
         @mixin fontsize 16px;
@@ -62,6 +67,11 @@
       height: 100%;
       margin-right: var(--base-spacing-unit--small);
       letter-spacing: 0.02em;
+
+      @media (--breakpoint-mobile) {
+        font-size: 16px;
+      }
+
       &:last-child { margin-right: 0; }
       a {
         position: relative;
@@ -71,8 +81,8 @@
         padding-right: var(--base-spacing-unit--small);
         padding-left: var(--base-spacing-unit--small);
         @media (--breakpoint-mobile) {
-          padding-right: 0;
-          padding-left: 0;
+          padding-right: 3px;
+          padding-left: 3px;
         }
         @mixin attention {
           text-decoration: none;

@@ -48,6 +48,11 @@
     @media (--breakpoint-lap-and-up) {
       padding-right: var(--base-spacing-unit--small);
       padding-left: var(--base-spacing-unit--small);
+      border-width: 1px;
+    }
+
+    @media (--breakpoint-mobile) {
+      font-size: 16px;
     }
   }
   .post__overlay {
