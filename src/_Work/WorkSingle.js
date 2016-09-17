@@ -1,3 +1,5 @@
+/* eslint-disable no-extra-boolean-cast */
+
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -32,8 +34,10 @@ class Single extends Component {
   }
 
   componentDidMount() {
-    const { filter, params, loadWorks } = this.props;
-    loadWorks(filter, params);
+    const { filter, params, loadWorks, allWorks } = this.props;
+    if (!allWorks.length) {
+      loadWorks(filter, params);
+    }
     this.highlightBlock();
     this.addParagraphFlag();
   }
@@ -47,36 +51,28 @@ class Single extends Component {
 
   render() {
 
-    const {
-      location,
-      allWorks,
-      worksPagination: { isFetching }
-    } = this.props;
+    const { location, allWorks } = this.props;
 
     const isEmpty = allWorks.length === 0;
     const item = allWorks[0];
 
     return (
       <div>
-        {!isEmpty
-          ?
-            <Helmet title={item.title.rendered} />
-          : ''
-        }
+        { !isEmpty ? <Helmet title={item.title.rendered} /> : '' }
 
-        {isEmpty
-          ? <Loading isFetching={isFetching} />
-          : <PageTransition location={location}>
-              <article className="entry" ref="post">
-                <div className="container">
-                  <h1 className="entry__title">{item.title.rendered}</h1>
-                  <time className="entry__time">
-                    created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
-                  </time>
-                  <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
-                </div>
-              </article>
-            </PageTransition>
+        { isEmpty
+            ? <Loading isFetching={isEmpty} />
+            : <PageTransition location={location}>
+                <article className="entry" ref="post">
+                  <div className="container">
+                    <h1 className="entry__title">{item.title.rendered}</h1>
+                    <time className="entry__time">
+                      created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
+                    </time>
+                    <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
+                  </div>
+                </article>
+              </PageTransition>
         }
       </div>
     )
@@ -85,19 +81,17 @@ class Single extends Component {
 
 function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
+  const { slug } = ownProps.params;
 
   const {
-    pagination: { worksByFilter },
     entities: { works }
   } = state;
 
-  const worksPagination = worksByFilter[filter] || { ids: [] };
-  const allWorks = worksPagination.ids.map(id => works[id]);
+  const allWorks = !!works[slug] ? [works[slug]] : [];
 
   return {
     allWorks,
-    filter,
-    worksPagination
+    filter
   };
 }
 
