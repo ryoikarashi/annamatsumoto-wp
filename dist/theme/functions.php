@@ -1,5 +1,15 @@
 <?php
+
+// add post thumbnail support
 add_theme_support( 'post-thumbnails' );
+
+
+// avoid garbled characters
+remove_filter('the_title', 'wptexturize');
+remove_filter('the_content', 'wptexturize');
+remove_filter('comment_text', 'wptexturize');
+remove_filter('the_excerpt', 'wptexturize');
+
 
 // add custom post type to api
 function sb_add_cpts_to_api() {
@@ -13,6 +23,8 @@ function sb_add_cpts_to_api() {
 }
 add_action( 'init', 'sb_add_cpts_to_api', 11 );
 
+
+// add Yoast SEO meta info to custom post api response
 add_action( 'rest_api_init', function() {
  register_rest_field(['notes','works'],
     'yoast',
@@ -49,20 +61,49 @@ function get_yoast( $object, $field_name, $request ) {
 
 
 // ACF Options Pages
-if( function_exists('acf_add_options_page') ) {
+// if( function_exists('acf_add_options_page') ) {
+//
+// 	acf_add_options_page(array(
+// 		'page_title' 	=> 'Theme General Settings',
+// 		'menu_title'	=> 'Theme Settings',
+// 		'menu_slug' 	=> 'theme-general-settings',
+// 		'capability'	=> 'edit_posts',
+// 		'redirect'		=> false
+// 	));
 
-	acf_add_options_page(array(
-		'page_title' 	=> 'Theme General Settings',
-		'menu_title'	=> 'Theme Settings',
-		'menu_slug' 	=> 'theme-general-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
-	
 	// acf_add_options_sub_page(array(
 	// 	'page_title' 	=> 'Top Page',
 	// 	'menu_title'	=> 'Top',
 	// 	'parent_slug'	=> 'theme-general-settings',
 	// ));
 
-}
+// }
+
+
+// Add prev and next post link in response header
+// function get_pagination_in_json( $post_response, $post, $context ) {
+//
+//     // Ensure global post is correctly set
+//     echo $old_post;
+//     $old_post = $GLOBALS['work'];
+//     $GLOBALS['work'] = (object)$post;
+//
+//     $previous_post = get_adjacent_post( true, '', true, 'works' );
+//     $next_post = get_adjacent_post( true, '', false, 'works' );
+//
+//     if ( is_a( $previous_post, 'WP_Post' ) ) {
+//         $previous = get_permalink($previous_post->ID);
+//         $post_response['pagination']['previous'] = $previous;
+//     }
+//
+//     if ( is_a( $next_post, 'WP_Post' ) ) {
+//         $next = get_permalink($next_post->ID);
+//         $post_response['pagination']['next'] = $next;
+//     }
+//
+//     // Reset global post to its old value
+//     $GLOBALS['work'] = $old_post;
+//
+//     return $post_response;
+// }
+// add_filter( 'json_prepare_post', 'get_pagination_in_json', 10, 3 );
