@@ -29,7 +29,7 @@ class Top extends Component {
                 mountChildren={true}
                 >
                   <PageTransition location={location}>
-                    <span id="top-bg" style={{backgroundImage: `url(${this.props.top.acf.top_bg_images[Math.floor(Math.random() * this.props.top.acf.top_bg_images.length)].image})`}} />
+                    <div id="top-bg" style={{backgroundImage: `url(${this.props.top.acf.top_bg_images[Math.floor(Math.random() * this.props.top.acf.top_bg_images.length)].image})`}} />
                   </PageTransition>
               </Preload>
         }

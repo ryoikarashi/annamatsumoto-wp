@@ -29,13 +29,13 @@ export default class App extends Component {
     return (
       <div>
         <Helmet title={this.handlePageTitle(pathname)} />
-          <PageTransition location={this.props.location}>
-            <Header />
+          <Header />
+            <PageTransition location={this.props.location}>
               <main className="main">
                 {this.props.children}
               </main>
-            <Footer />
-          </PageTransition>
+            </PageTransition>
+          <Footer />
       </div>
     );
   }
