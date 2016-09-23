@@ -17,7 +17,7 @@
   <meta property="og:title" content="Anna Matsumoto (松本杏菜)">
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://annamatsumoto.com">
-  <meta property="og:image" content="http://annamatsumoto.com/assets/og-image.png">
+  <meta property="og:image" content="http://annamatsumoto.com/assets/og-image.jpg">
   <meta property="og:site_name" content="Anna Matsumoto (松本杏菜)">
   <meta property="og:description" content="Anna Matsumoto portfolio site.">
 
