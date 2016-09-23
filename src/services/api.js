@@ -1,4 +1,5 @@
 import { Schema, arrayOf, normalize } from 'normalizr';
+import appendQuery from 'append-query';
 import 'isomorphic-fetch';
 
 function getNextPageUrl(res) {
@@ -19,9 +20,11 @@ function getNextPageUrl(res) {
 
 const API_ROOT = '/wp-json/wp/v2/';
 
-function callApi(endpoint, schema) {
+function callApi(endpoint, schema, lang = '') {
 
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
+  console.log(appendQuery(`${API_ROOT}${endpoint}`, `lang=${lang}`));
+
+  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? appendQuery(`${API_ROOT}${endpoint}`, `lang=${lang}`) : endpoint;
 
   return fetch(fullUrl)
     .then(response =>
@@ -63,8 +66,8 @@ const topSchema = new Schema('top');
 const topSchemaArray = arrayOf(topSchema);
 
 // api services
-export const fetchWorks = (params, url) => callApi(url, workSchemaArray);
+export const fetchWorks = (params, url, lang) => callApi(url, workSchemaArray, lang);
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
-export const fetchMe = () => callApi('pages?filter[name]=me', meSchemaArray);
-export const fetchTop = () => callApi('pages?filter[name]=top', topSchemaArray);
+export const fetchMe = (lang) => callApi('pages?filter[name]=me', meSchemaArray, lang);
+export const fetchTop = (lang) => callApi('pages?filter[name]=top', topSchemaArray, lang);

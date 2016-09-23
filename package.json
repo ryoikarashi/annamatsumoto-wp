@@ -87,6 +87,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "append-query": "^1.1.0",
     "classnames": "^2.2.5",
     "date-utils": "^1.2.21",
     "express": "^4.13.4",
