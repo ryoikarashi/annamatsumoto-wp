@@ -11,7 +11,7 @@ class Paginate extends Component {
 
   handleLoadMoreClick() {
     const { loadMoreWorks, filter, params } = this.props;
-    loadMoreWorks(filter, params, true);
+    loadMoreWorks(filter, params);
   }
 
   render() {
