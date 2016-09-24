@@ -5,9 +5,9 @@ import { watchLoadMe } from '../_Me/sagas';
 import { watchLoadTop } from '../_Top/sagas';
 import { watchLoadCategories, watchLoadTags } from '../taxonomy/sagas';
 
-export function* fetchEntity(entity, apiFn, id, params, url) {
+export function* fetchEntity(entity, apiFn, id, params, url, lang) {
   yield put( entity.request(id) );
-  const {response, error} = yield call(apiFn, params, url || id);
+  const {response, error} = yield call(apiFn, params, url || id, lang);
   if(response)
     yield put( entity.success(id, response) );
   else

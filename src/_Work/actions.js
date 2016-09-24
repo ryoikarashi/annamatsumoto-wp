@@ -8,7 +8,7 @@ export const works = {
 };
 
 export const LOAD_WORKS = 'LOAD_WORKS';
-export const loadWorks = (filter, params) => action(LOAD_WORKS, {filter, params});
+export const loadWorks = (filter, params, lang) => action(LOAD_WORKS, {filter, params, lang});
 
 export const LOAD_MORE_WORKS = 'LOAD_MORE_WORKS';
-export const loadMoreWorks = (filter, params) => action(LOAD_MORE_WORKS, {filter, params});
+export const loadMoreWorks = (filter, params, lang) => action(LOAD_MORE_WORKS, {filter, params, lang});

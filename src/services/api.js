@@ -22,8 +22,6 @@ const API_ROOT = '/wp-json/wp/v2/';
 
 function callApi(endpoint, schema, lang = '') {
 
-  console.log(appendQuery(`${API_ROOT}${endpoint}`, `lang=${lang}`));
-
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? appendQuery(`${API_ROOT}${endpoint}`, `lang=${lang}`) : endpoint;
 
   return fetch(fullUrl)

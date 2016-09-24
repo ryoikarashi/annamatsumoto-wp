@@ -9,6 +9,4 @@ export const createRequestTypes = (base) => {
   }, {});
 }
 
-export const action = (type, payload = {}) => {
-  return { type, ...payload };
-}
+export const action = (type, payload = {}) => ({ type, ...payload });

@@ -30,7 +30,7 @@ export default class App extends Component {
       <div>
         <Helmet title={this.handlePageTitle(pathname)} />
           <PageTransition location={this.props.location}>
-            <Header />
+            <Header {...this.props} />
               <main className="main">
                 {this.props.children}
               </main>

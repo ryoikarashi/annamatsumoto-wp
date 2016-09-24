@@ -35,8 +35,10 @@ class Single extends Component {
 
   componentDidMount() {
     const { filter, params, loadWorks, allWorks } = this.props;
+    const { lang } = params
+
     if (!allWorks.length) {
-      loadWorks(filter, params);
+      loadWorks(filter, params, lang);
     }
     this.highlightBlock();
     this.addParagraphFlag();

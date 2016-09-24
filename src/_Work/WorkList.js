@@ -27,6 +27,7 @@ class MemoList extends Component {
 
   render() {
     const {
+      params,
       location,
       allWorks,
       nextPageUrl,
@@ -43,7 +44,7 @@ class MemoList extends Component {
                 ? <Loading isFetching={isFetching} />
                 : <PageTransition location={location}>
                     <div className="[ layout layout--tiny ]">
-                      { allWorks.map(item => <WorkItem key={item.id} item={item} />) }
+                      { allWorks.map(item => <WorkItem key={item.id} item={item} lang={params.lang || ''} />) }
                     </div>
                   </PageTransition>
             }
