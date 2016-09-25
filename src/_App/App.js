@@ -10,14 +10,17 @@ export default class App extends Component {
   handlePageTitle(pathname, lang) {
     switch(pathname) {
       case '/':
+      case `/${lang}`:
       case `/${lang}/`:
         return titles.top;
       case '/me':
       case '/me/':
+      case `/${lang}/me`:
       case `/${lang}/me/`:
         return titles.me;
       case '/works':
       case '/works/':
+      case `/${lang}/works`:
       case `/${lang}/works/`:
         return titles.works;
       default:

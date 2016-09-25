@@ -12,7 +12,8 @@ class MemoList extends Component {
 
   loadWorks() {
     const { filter, loadWorks, params } = this.props;
-    loadWorks(filter, params);
+    const { lang } = params;
+    loadWorks(filter, params, lang);
   }
 
   componentWillMount() {
@@ -21,7 +22,7 @@ class MemoList extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter !== this.props.filter) {
-      this.loadWorks(nextProps.filter, nextProps.params);
+      this.loadWorks(nextProps.filter, nextProps.params, nextProps.params.lang);
     }
   }
 
