@@ -44,11 +44,11 @@ class MemoList extends Component {
   }
 
   render() {
-    const { item, lang } = this.props;
+    const { pathname, item } = this.props;
 
     return (
       <div className="[ layout__item ] [ lap-and-up-one-third--square palm-one-half mobile-one-whole ]">
-        <Link to={`${lang}/works/${item.slug}`}>
+        <Link to={`${pathname}/${item.slug}`}>
           <article className="post" style={{backgroundImage: this.hasThumbnail() ? this.getItemBg().image : this.getItemBg().gradient}}>
             <h1 className="post__title">{item.title.rendered}</h1>
             <span className="post__overlay" style={{":hover": { background: this.getItemBg().gradient }}}

@@ -36,7 +36,8 @@ const MeInfo = ({ me }) => (
 class Me extends Component {
 
   componentWillMount() {
-    this.props.loadMe();
+    const { params: {lang} } = this.props;
+    this.props.loadMe(lang);
   }
 
   render() {

@@ -7,15 +7,18 @@ import { titles } from '../data';
 
 export default class App extends Component {
 
-  handlePageTitle(pathname) {
+  handlePageTitle(pathname, lang) {
     switch(pathname) {
       case '/':
+      case `/${lang}/`:
         return titles.top;
       case '/me':
       case '/me/':
+      case `/${lang}/me/`:
         return titles.me;
       case '/works':
       case '/works/':
+      case `/${lang}/works/`:
         return titles.works;
       default:
         return titles.notFound;
@@ -24,11 +27,11 @@ export default class App extends Component {
 
   render() {
 
-    const { pathname } = this.props.location;
+    const { location: {pathname}, params: {lang} } = this.props;
 
     return (
       <div>
-        <Helmet title={this.handlePageTitle(pathname)} />
+        <Helmet title={this.handlePageTitle(pathname, lang)} />
           <PageTransition location={this.props.location}>
             <Header {...this.props} />
               <main className="main">

@@ -64,8 +64,8 @@ const topSchema = new Schema('top');
 const topSchemaArray = arrayOf(topSchema);
 
 // api services
-export const fetchWorks = (params, url, lang) => callApi(url, workSchemaArray, lang);
-export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
+export const fetchWorks      = (params, url, lang) => callApi(url, workSchemaArray, lang);
+export const fetchTags       = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
-export const fetchMe = (lang) => callApi('pages?filter[name]=me', meSchemaArray, lang);
-export const fetchTop = (lang) => callApi('pages?filter[name]=top', topSchemaArray, lang);
+export const fetchMe         = (params, lang) => callApi('pages?filter[name]=me', meSchemaArray, lang);
+export const fetchTop        = (params, lang) => callApi('pages?filter[name]=top', topSchemaArray, lang);

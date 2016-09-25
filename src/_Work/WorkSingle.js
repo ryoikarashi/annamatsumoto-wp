@@ -35,7 +35,7 @@ class Single extends Component {
 
   componentDidMount() {
     const { filter, params, loadWorks, allWorks } = this.props;
-    const { lang } = params
+    const { lang } = params;
 
     if (!allWorks.length) {
       loadWorks(filter, params, lang);
@@ -69,7 +69,7 @@ class Single extends Component {
                   <div className="container">
                     <h1 className="entry__title">{item.title.rendered}</h1>
                     <time className="entry__time">
-                      created at <Link to={`/works/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
+                      created at <Link to={`time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
                     </time>
                     <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
                   </div>

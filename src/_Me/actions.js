@@ -9,4 +9,4 @@ export const me = {
 };
 
 export const LOAD_ME = 'LOAD_ME';
-export const loadMe = () => action(LOAD_ME);
+export const loadMe = (lang) => action(LOAD_ME, {lang});

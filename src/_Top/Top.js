@@ -9,7 +9,8 @@ import PageTransition from '../_Common/PageTransition';
 class Top extends Component {
 
   componentWillMount() {
-    this.props.loadTop();
+    const { params: {lang} } = this.props;
+    this.props.loadTop(lang);
   }
 
   render() {
