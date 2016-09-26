@@ -10,6 +10,7 @@ import $ from 'jquery';
 import Loading from '../_Common/Loading';
 import { loadWorks } from './actions';
 import PageTransition from '../_Common/PageTransition';
+import Share from '../_Common/Share';
 
 class Single extends Component {
 
@@ -76,6 +77,7 @@ class Single extends Component {
                     </time>
                     <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
                   </div>
+                  <Share pathname={location.pathname} title={item.title.rendered} />
                 </article>
               </PageTransition>
         }
