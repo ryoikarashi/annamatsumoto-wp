@@ -1,13 +1,17 @@
 :root {
   --page-micro-background: transparent;
-  --page-micro-text: var(--color-base);
-  --page-micro-padding: var(--base-spacing-unit--small);
+  --page-micro-text:       var(--color-dark);
+  --page-micro-text--top:  var(--color-base);
+  --page-micro-padding:    var(--base-spacing-unit--small);
 }
 
 .page-micro {
   background-color: var(--page-micro-background);
   padding: var(--page-micro-padding);
   color: var(--page-micro-text);
+  &.top {
+    color: var(--page-micro-text--top);
+  }
   &, a {
     color: var(--page-micro-text);
   }

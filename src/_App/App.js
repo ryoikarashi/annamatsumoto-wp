@@ -54,7 +54,7 @@ class App extends Component {
               <main className="main">
                 {this.props.children}
               </main>
-            <Footer />
+            <Footer {...this.props} />
           </PageTransition>
       </div>
     );

@@ -52,6 +52,7 @@
 @import 'components.load-more-button';
 @import 'components.images';
 @import 'components.loading';
+@import 'components.share';
 
 /* VENDOR */
 @import 'github-markdown-css';
