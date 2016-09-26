@@ -14,6 +14,35 @@
   @util clearfix;
 }
 
+  .header__lang {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: auto;
+    ul, li { margin: 0; }
+    border: 1px solid var(--color-dark);
+  }
+
+    .header__lang__item {
+      border-bottom: 1px solid var(--color-dark);
+      margin: 3px;
+      &:last-child { border-bottom: 0; }
+      a {
+        @mixin fontsize 14px;
+        display: block;
+        width: 100%;
+        color: var(--color-dark);
+        text-decoration: none;
+        text-align: center;
+        padding: 0 3px;
+        @mixin transition all;
+        &.active, &:hover {
+          color: var(--color-base);
+          background: var(--color-dark);
+        }
+      }
+    }
+
   .header__title {
     position: absolute;
     top: 50%;
@@ -55,7 +84,7 @@
   .header__nav {
     position: absolute;
     top: 50%;
-    right: var(--base-spacing-unit);
+    right: 70px;
     transform: translate(0, -50%);
     ul, li { list-style: none; }
     ul { @util clearfix; margin: 0; }

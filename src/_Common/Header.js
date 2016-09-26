@@ -17,15 +17,14 @@ class Header extends Component {
           <ul>
             <li className="header__nav__item"><Link to={`${langRoute}/me`} activeClassName="active">ME</Link></li>
             <li className="header__nav__item"><Link to={`${langRoute}/works`} activeClassName="active">WORKS</Link></li>
-              <div>
-                <ul>
-                  <li><Link to={pathname.replace(langRoute, '')}  activeClassName="active">JP</Link></li>
-                  <li>/</li>
-                  <li><Link to={pathname.replace(langRoute, '/en')} activeClassName="active">EN</Link></li>
-                </ul>
-              </div>
           </ul>
         </nav>
+        <div className="header__lang">
+          <ul>
+            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '')}  activeClassName="active">JP</Link></li>
+            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '/en')} activeClassName="active">EN</Link></li>
+          </ul>
+        </div>
       </header>
     )
   }
