@@ -8,17 +8,20 @@ import { fetchEntity } from '../_App/sagas';
 /***************************** Subroutines ************************************/
 const fetchTop = fetchEntity.bind(null, top, api.fetchTop);
 
-function* loadTop() {
-  const top = yield select(getTop);
+function* loadTop(lang) {
+  const top = yield select(getTop, lang);
   if (!Object.keys(top).length)
-    yield call(fetchTop);
+    yield call(
+      fetchTop,
+      lang
+    );
 }
 
 /******************************* WATCHERS *************************************/
 export function* watchLoadTop() {
   while(true) {
-     yield take(LOAD_TOP);
+    const { lang } = yield take(LOAD_TOP);
 
-     yield fork(loadTop);
+    yield fork(loadTop, lang);
   }
 }

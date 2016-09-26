@@ -1,1 +1,1 @@
-export const getMe = state => state.entities.me || {};
+export const getMe = (state, lang) => state.entities.entities[lang || 'ja'].me || {};

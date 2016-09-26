@@ -11,15 +11,16 @@ export default class TagFilter extends Component {
   }
 
   initQueryFilter() {
-    const { loadTags } = this.props;
-    loadTags();
+    const { loadTags, lang } = this.props;
+    loadTags(lang);
   }
 
   getFilteredWorks(tagInput = '', searchInput = '') {
 
-    const { dispatch, loadWorks } = this.props;
+    const { dispatch, loadWorks, lang } = this.props;
+    const langPath = lang === 'ja' ? '/' : `/${lang}/`;
 
-    let fullUrl = '/works';
+    let fullUrl = `${langPath}works`;
     let params = {};
 
     // if there is no input, then show all works again, if not, then show works filtered by queries
@@ -49,7 +50,7 @@ export default class TagFilter extends Component {
     this.getFilteredWorks({value: e.target.value}, {value: ''});
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.initQueryFilter();
   }
 
@@ -79,4 +80,9 @@ export default class TagFilter extends Component {
   }
 }
 
-export default connect()(TagFilter);
+function mapStateToProps(state) {
+  const { lang: {lang} } = state;
+  return { lang };
+}
+
+export default connect(mapStateToProps)(TagFilter);

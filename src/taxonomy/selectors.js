@@ -1,2 +1,2 @@
-export const getCategories = state => state.entities.categories || {};
-export const getTags = state => state.entities.tags || {};
+export const getCategories = (state, lang) => state.entities.entities[lang || 'ja'].categories || {};
+export const getTags = (state, lang) => state.entities.entities[lang || 'ja'].tags || {};

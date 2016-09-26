@@ -9,7 +9,8 @@ import PageTransition from '../_Common/PageTransition';
 class Top extends Component {
 
   componentWillMount() {
-    this.props.loadTop();
+    const { params: {lang} } = this.props;
+    this.props.loadTop(lang);
   }
 
   render() {
@@ -42,8 +43,11 @@ function mapStateToProps(state) {
 
   const {
     top: { isFetching },
-    entities: { top }
+    entities: { entities },
+    lang: { lang }
   } = state;
+
+  const { top } = entities[lang];
 
   let topInfo = top[Object.keys(top)[0]];
 

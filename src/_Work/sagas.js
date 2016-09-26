@@ -28,36 +28,35 @@ const firstPageWorksUrl = params => {
 };
 
 /***************************** Subroutines ************************************/
+const fetchWorks = fetchEntity.bind(null, works, api.fetchWorks);
 
-export const fetchWorks = fetchEntity.bind(null, works, api.fetchWorks);
+function* loadWorks(filter, params, lang, loadMore) {
 
-function* loadWorks(filter, params, loadMore) {
-  const works = yield select(getWorks, filter, params);
+  const works = yield select(getWorks, filter, lang);
 
   if (!Object.keys(works).length || loadMore) {
+
     yield call(
       fetchWorks,
       filter,
       params,
-      works.nextPageUrl || firstPageWorksUrl(params)
+      works.nextPageUrl || firstPageWorksUrl(params),
+      lang
     );
   }
 }
 
-/******************************************************************************/
 /******************************* WATCHERS *************************************/
-/******************************************************************************/
-
 export function* watchLoadWorks() {
   while(true) {
-    const {filter, params} = yield take(LOAD_WORKS);
-    yield fork(loadWorks, filter, params);
+    const {filter, params, lang} = yield take(LOAD_WORKS);
+    yield fork(loadWorks, filter, params, lang);
   }
 }
 
 export function* watchLoadMoreWorks() {
   while(true) {
-    const {filter, params} = yield take(LOAD_MORE_WORKS);
-    yield fork(loadWorks, filter, params, true);
+    const {filter, params, lang} = yield take(LOAD_MORE_WORKS);
+    yield fork(loadWorks, filter, params, lang, true);
   }
 }

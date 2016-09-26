@@ -5,13 +5,15 @@ import { watchLoadMe } from '../_Me/sagas';
 import { watchLoadTop } from '../_Top/sagas';
 import { watchLoadCategories, watchLoadTags } from '../taxonomy/sagas';
 
-export function* fetchEntity(entity, apiFn, id, params, url) {
-  yield put( entity.request(id) );
-  const {response, error} = yield call(apiFn, params, url || id);
-  if(response)
-    yield put( entity.success(id, response) );
-  else
-    yield put( entity.failure(id, error) );
+export function* fetchEntity(entity, apiFn, id, params, url, lang) {
+  yield put(entity.request(id, lang));
+  const {response, error} = yield call(apiFn, params, url || id, lang);
+  if(response) {
+    yield put(entity.success(id, response, lang));
+  }
+  else {
+    yield put(entity.failure(id, error, lang));
+  }
 }
 
 export default function* root() {

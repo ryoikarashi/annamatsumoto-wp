@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadMe } from './actions';
+import { switchLang } from '../i18n/actions';
 import Loading from '../_Common/Loading';
 import PageTransition from '../_Common/PageTransition';
 
@@ -36,7 +37,8 @@ const MeInfo = ({ me }) => (
 class Me extends Component {
 
   componentWillMount() {
-    this.props.loadMe();
+    const { params: {lang} } = this.props;
+    this.props.loadMe(lang);
   }
 
   render() {
@@ -67,8 +69,11 @@ function mapStateToProps(state) {
 
   const {
     me: { isFetching },
-    entities: { me }
+    entities: { entities },
+    lang: { lang }
   } = state;
+
+  const { me } = entities[lang];
 
   let meInfo = me[Object.keys(me)[0]];
 
@@ -78,4 +83,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { loadMe })(Me);
+export default connect(mapStateToProps, { loadMe, switchLang })(Me);

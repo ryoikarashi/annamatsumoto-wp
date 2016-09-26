@@ -12,7 +12,8 @@ class MemoList extends Component {
 
   loadWorks() {
     const { filter, loadWorks, params } = this.props;
-    loadWorks(filter, params);
+    const { lang } = params;
+    loadWorks(filter, params, lang);
   }
 
   componentWillMount() {
@@ -21,7 +22,7 @@ class MemoList extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter !== this.props.filter) {
-      this.loadWorks(nextProps.filter, nextProps.params);
+      this.props.loadWorks(nextProps.filter, nextProps.params, nextProps.params.lang);
     }
   }
 
@@ -30,7 +31,8 @@ class MemoList extends Component {
       location,
       allWorks,
       nextPageUrl,
-      worksPagination: { isFetching }
+      worksPagination: { isFetching },
+      lang
     } = this.props;
 
     return (
@@ -43,7 +45,7 @@ class MemoList extends Component {
                 ? <Loading isFetching={isFetching} />
                 : <PageTransition location={location}>
                     <div className="[ layout layout--tiny ]">
-                      { allWorks.map(item => <WorkItem key={item.id} item={item} />) }
+                      { allWorks.map(item => <WorkItem key={item.id} item={item} lang={lang} />) }
                     </div>
                   </PageTransition>
             }
@@ -67,10 +69,13 @@ function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
 
   const {
-    pagination: { worksByFilter },
-    entities: { works, tags, categories }
+    pagination,
+    entities: { entities },
+    lang: { lang }
   } = state;
 
+  const { worksByFilter } = pagination.lang[lang];
+  const { works, tags, categories } = entities[lang];
   const worksPagination = worksByFilter[filter] || { ids: [] };
   const allWorks = worksPagination.ids.map(id => works[id]);
   const { nextPageUrl } = worksPagination;
@@ -81,7 +86,8 @@ function mapStateToProps(state, ownProps) {
     allWorks,
     filter,
     worksPagination,
-    nextPageUrl
+    nextPageUrl,
+    lang
   };
 }
 
