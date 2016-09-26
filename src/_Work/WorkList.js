@@ -17,7 +17,6 @@ class MemoList extends Component {
   }
 
   componentWillMount() {
-    console.log('workList componentWillMount');
     this.loadWorks();
   }
 
@@ -32,7 +31,8 @@ class MemoList extends Component {
       location,
       allWorks,
       nextPageUrl,
-      worksPagination: { isFetching }
+      worksPagination: { isFetching },
+      lang
     } = this.props;
 
     return (
@@ -45,7 +45,7 @@ class MemoList extends Component {
                 ? <Loading isFetching={isFetching} />
                 : <PageTransition location={location}>
                     <div className="[ layout layout--tiny ]">
-                      { allWorks.map(item => <WorkItem key={item.id} item={item} pathname={location.pathname} />) }
+                      { allWorks.map(item => <WorkItem key={item.id} item={item} lang={lang} />) }
                     </div>
                   </PageTransition>
             }
@@ -86,7 +86,8 @@ function mapStateToProps(state, ownProps) {
     allWorks,
     filter,
     worksPagination,
-    nextPageUrl
+    nextPageUrl,
+    lang
   };
 }
 

@@ -1,1 +1,1 @@
-export const getTop = state => state.entities.top || {};
+export const getTop = (state, lang) => state.entities.entities[lang || 'ja'].top || {};

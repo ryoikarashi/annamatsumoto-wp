@@ -56,10 +56,10 @@ class Single extends Component {
 
   render() {
 
-    const { location, allWorks } = this.props;
-
+    const { location, allWorks, lang } = this.props;
     const isEmpty = allWorks.length === 0;
     const item = allWorks[0];
+    const langPath = lang === 'ja' ? '/works' : `/${lang}/works`;
 
     return (
       <div>
@@ -72,7 +72,7 @@ class Single extends Component {
                   <div className="container">
                     <h1 className="entry__title">{item.title.rendered}</h1>
                     <time className="entry__time">
-                      created at <Link to={`time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
+                      created at <Link to={`${langPath}/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link>
                     </time>
                     <div className="entry__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
                   </div>
@@ -98,7 +98,8 @@ function mapStateToProps(state, ownProps) {
 
   return {
     allWorks,
-    filter
+    filter,
+    lang
   };
 }
 

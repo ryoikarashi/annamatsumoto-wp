@@ -9,7 +9,7 @@ import { fetchEntity } from '../_App/sagas';
 const fetchTop = fetchEntity.bind(null, top, api.fetchTop);
 
 function* loadTop(lang) {
-  const top = yield select(getTop);
+  const top = yield select(getTop, lang);
   if (!Object.keys(top).length)
     yield call(
       fetchTop,

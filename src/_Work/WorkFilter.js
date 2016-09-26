@@ -51,7 +51,6 @@ export default class TagFilter extends Component {
   }
 
   componentWillMount() {
-    console.log('hello');
     this.initQueryFilter();
   }
 
