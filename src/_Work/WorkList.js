@@ -17,6 +17,7 @@ class MemoList extends Component {
   }
 
   componentWillMount() {
+    console.log('workList componentWillMount');
     this.loadWorks();
   }
 

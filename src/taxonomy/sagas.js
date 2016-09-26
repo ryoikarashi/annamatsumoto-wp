@@ -10,7 +10,7 @@ export const fetchTags       = fetchEntity.bind(null, tags, api.fetchTags);
 export const fetchCategories = fetchEntity.bind(null, categories, api.fetchCategories);
 
 function* loadCategories(lang) {
-  const categories = yield select(getCategories);
+  const categories = yield select(getCategories, lang);
   if (!Object.keys(categories).length)
     yield call(
       fetchCategories,
@@ -19,7 +19,7 @@ function* loadCategories(lang) {
 }
 
 function* loadTags(lang) {
-  const tags = yield select(getTags);
+  const tags = yield select(getTags, lang);
   if (!Object.keys(tags).length)
     yield call(
       fetchTags,
