@@ -3,7 +3,7 @@
   margin-top: 100px;
 
   @media (--breakpoint-palm-and-down) {
-    margin-top: var(--base-spacing-unit--small);
+    margin-top: var(--base-spacing-unit--large);
     position: relative;
     left: 50%;
     transform: translateX(-50%);
