@@ -34,9 +34,6 @@ class MemoList extends Component {
       worksPagination: { isFetching }
     } = this.props;
 
-    console.log('allWorks', allWorks);
-    console.log('allWorks.length', allWorks.length);
-
     return (
       <div>
         <WorkFilter {...this.props} />
