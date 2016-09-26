@@ -17,9 +17,7 @@ export default class Share extends Component {
   render() {
 
     const { pathname, title } = this.props;
-    console.log(pathname)
-    // const shareUrl = `${location.origin}${pathname}`;
-    const shareUrl = 'http://annamatsumoto.com' + pathname;
+    const shareUrl = location.origin + pathname;
     const shareTitle = title + titles.appender;
 
     return (
@@ -29,9 +27,7 @@ export default class Share extends Component {
             url={shareUrl}
             title={shareTitle}
             className="share__item__button">
-            <FacebookIcon
-              size={32}
-              round />
+            <FacebookIcon size={28} iconBgStyle={{fill: '#444'}} />
           </FacebookShareButton>
         </div>
 
@@ -40,9 +36,7 @@ export default class Share extends Component {
             url={shareUrl}
             title={shareTitle}
             className="share__item__button">
-            <TwitterIcon
-              size={32}
-              round />
+            <TwitterIcon size={28} iconBgStyle={{fill: '#444'}} />
           </TwitterShareButton>
 
         </div>

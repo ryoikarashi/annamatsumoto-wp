@@ -74,6 +74,7 @@
 
         @media (--breakpoint-mobile) {
           line-height: 1.4;
+          font-size: 15px;
         }
       }
       .header__title__text--ja {
@@ -98,7 +99,7 @@
       letter-spacing: 0.02em;
 
       @media (--breakpoint-mobile) {
-        font-size: 16px;
+        font-size: 15px;
       }
 
       &:last-child { margin-right: 0; }

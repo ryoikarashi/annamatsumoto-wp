@@ -1,0 +1,27 @@
+.share__container {
+  @util clearfix;
+  margin-top: 100px;
+
+  @media (--breakpoint-palm-and-down) {
+    margin-top: var(--base-spacing-unit--small);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+  }
+}
+
+.share__item {
+  display: inline-block;
+  margin-right: var(--base-spacing-unit--tiny);
+  cursor: pointer;
+  float: right;
+  &:first-child { margin-right: 0 }
+
+  @media (--breakpoint-palm-and-down) {
+    float: none;
+    display: inline-block;
+    &:first-child { margin-right: var(--base-spacing-unit--tiny); }
+    &:last-child { margin-right: 0; }
+  }
+}
