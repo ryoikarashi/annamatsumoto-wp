@@ -43,8 +43,11 @@ function mapStateToProps(state) {
 
   const {
     top: { isFetching },
-    entities: { top }
+    entities: { entities },
+    lang: { lang }
   } = state;
+
+  const { top } = entities[lang];
 
   let topInfo = top[Object.keys(top)[0]];
 

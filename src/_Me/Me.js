@@ -79,8 +79,7 @@ function mapStateToProps(state) {
 
   return {
     me: meInfo,
-    isFetching,
-    lang
+    isFetching
   };
 }
 
