@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router';
+import cn from 'classnames';
 
 class Header extends Component {
   render() {
@@ -21,8 +22,8 @@ class Header extends Component {
         </nav>
         <div className="header__lang">
           <ul>
-            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '')}  activeClassName="active">JP</Link></li>
-            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '/en')} activeClassName="active">EN</Link></li>
+            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '')} className={cn({active: typeof lang === 'undefined'})}>JP</Link></li>
+            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '/en')} className={cn({active: lang === 'en'})}>EN</Link></li>
           </ul>
         </div>
       </header>
