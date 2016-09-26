@@ -9,33 +9,37 @@ import { fetchEntity } from '../_App/sagas';
 export const fetchTags       = fetchEntity.bind(null, tags, api.fetchTags);
 export const fetchCategories = fetchEntity.bind(null, categories, api.fetchCategories);
 
-function* loadCategories() {
+function* loadCategories(lang) {
   const categories = yield select(getCategories);
   if (!Object.keys(categories).length)
-    yield call(fetchCategories);
+    yield call(
+      fetchCategories,
+      lang
+    );
 }
 
-function* loadTags() {
+function* loadTags(lang) {
   const tags = yield select(getTags);
   if (!Object.keys(tags).length)
-    yield call(fetchTags);
+    yield call(
+      fetchTags,
+      lang
+    );
 }
 
-/******************************************************************************/
 /******************************* WATCHERS *************************************/
-/******************************************************************************/
 export function* watchLoadCategories() {
   while(true) {
-    yield take(LOAD_CATEGORIES);
+    const { lang } = yield take(LOAD_CATEGORIES);
 
-    yield fork(loadCategories);
+    yield fork(loadCategories, lang);
   }
 }
 
 export function* watchLoadTags() {
   while(true) {
-    yield take(LOAD_TAGS);
+    const { lang } = yield take(LOAD_TAGS);
 
-    yield fork(loadTags);
+    yield fork(loadTags, lang);
   }
 }

@@ -11,8 +11,8 @@ export default class TagFilter extends Component {
   }
 
   initQueryFilter() {
-    const { loadTags } = this.props;
-    loadTags();
+    const { loadTags, lang } = this.props;
+    loadTags(lang);
   }
 
   getFilteredWorks(tagInput = '', searchInput = '') {
@@ -79,4 +79,9 @@ export default class TagFilter extends Component {
   }
 }
 
-export default connect()(TagFilter);
+function mapStateToProps(state) {
+  const { lang: {lang} } = state;
+  return { lang };
+}
+
+export default connect(mapStateToProps)(TagFilter);

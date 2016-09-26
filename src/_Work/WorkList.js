@@ -22,7 +22,7 @@ class MemoList extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filter !== this.props.filter) {
-      this.loadWorks(nextProps.filter, nextProps.params, nextProps.params.lang);
+      this.props.loadWorks(nextProps.filter, nextProps.params, nextProps.params.lang);
     }
   }
 
@@ -69,8 +69,11 @@ function mapStateToProps(state, ownProps) {
 
   const {
     pagination: { worksByFilter },
-    entities: { works, tags, categories }
+    entities: { entities },
+    lang: { lang }
   } = state;
+
+  const { works, tags, categories } = entities[lang];
 
   const worksPagination = worksByFilter[filter] || { ids: [] };
   const allWorks = worksPagination.ids.map(id => works[id]);

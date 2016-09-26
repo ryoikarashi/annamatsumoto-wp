@@ -2,9 +2,9 @@ import { action, createRequestTypes } from '../_App/actions';
 
 export const WORKS = createRequestTypes('WORKS');
 export const works = {
-  request: (filter) => action(WORKS.REQUEST, {filter}),
-  success: (filter, response) => action(WORKS.SUCCESS, {filter, response}),
-  failure: (filter, error) => action(WORKS.FAILURE, {filter, error})
+  request: (filter, lang) => action(WORKS.REQUEST, {filter, lang}),
+  success: (filter, response, lang) => action(WORKS.SUCCESS, {filter, response, lang}),
+  failure: (filter, error, lang) => action(WORKS.FAILURE, {filter, error, lang})
 };
 
 export const LOAD_WORKS = 'LOAD_WORKS';
