@@ -4,8 +4,9 @@ import { routerReducer as routing } from 'react-router-redux';
 import { pagination } from '../_Paginate/reducers';
 import { me } from '../_Me/reducers';
 import { top } from '../_Top/reducers';
+import { lang } from '../i18n/reducers';
 
-const entities = (
+const content = (
   state = {
     works: {},
     tags: {},
@@ -17,15 +18,37 @@ const entities = (
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities);
   }
+
   return state;
 };
+
+function languages({mapActionToKey}) {
+  return function contentsByKey(state = {}, action) {
+    const key = mapActionToKey(action);
+
+    if (typeof key !== 'string') {
+      throw new Error('Expected key to be a string.');
+    }
+
+    return merge({}, state, {
+      [key]: content(state[key], action)
+    });
+  }
+}
+
+const entities = combineReducers({
+  entities: languages({
+    mapActionToKey: action => action.lang || 'ja'
+  })
+});
 
 const rootReducer = combineReducers({
   routing,
   entities,
   pagination,
   me,
-  top
+  top,
+  lang
 });
 
 export default rootReducer;

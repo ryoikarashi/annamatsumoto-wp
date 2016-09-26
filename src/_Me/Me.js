@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadMe } from './actions';
+import { switchLang } from '../i18n/actions';
 import Loading from '../_Common/Loading';
 import PageTransition from '../_Common/PageTransition';
 
@@ -68,15 +69,19 @@ function mapStateToProps(state) {
 
   const {
     me: { isFetching },
-    entities: { me }
+    entities: { entities },
+    lang: { lang }
   } = state;
+
+  const { me } = entities[lang];
 
   let meInfo = me[Object.keys(me)[0]];
 
   return {
     me: meInfo,
-    isFetching
+    isFetching,
+    lang
   };
 }
 
-export default connect(mapStateToProps, { loadMe })(Me);
+export default connect(mapStateToProps, { loadMe, switchLang })(Me);
