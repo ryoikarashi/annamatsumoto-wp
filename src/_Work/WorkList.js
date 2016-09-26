@@ -34,6 +34,9 @@ class MemoList extends Component {
       worksPagination: { isFetching }
     } = this.props;
 
+    console.log('allWorks', allWorks);
+    console.log('allWorks.length', allWorks.length);
+
     return (
       <div>
         <WorkFilter {...this.props} />
@@ -68,13 +71,13 @@ function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
 
   const {
-    pagination: { worksByFilter },
+    pagination,
     entities: { entities },
     lang: { lang }
   } = state;
 
+  const { worksByFilter } = pagination.lang[lang];
   const { works, tags, categories } = entities[lang];
-
   const worksPagination = worksByFilter[filter] || { ids: [] };
   const allWorks = worksPagination.ids.map(id => works[id]);
   const { nextPageUrl } = worksPagination;

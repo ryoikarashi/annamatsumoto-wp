@@ -10,8 +10,8 @@ class Paginate extends Component {
   }
 
   handleLoadMoreClick() {
-    const { loadMoreWorks, filter, params } = this.props;
-    loadMoreWorks(filter, params);
+    const { loadMoreWorks, filter, params, lang } = this.props;
+    loadMoreWorks(filter, params, lang);
   }
 
   render() {
@@ -28,9 +28,11 @@ class Paginate extends Component {
 function mapStateToProps(state, ownProps) {
   const filter = ownProps.location.pathname;
   const { params } = ownProps;
+  const { lang: {lang} } = state;
   return {
     filter,
-    params
+    params,
+    lang
   };
 }
 

@@ -17,9 +17,10 @@ export default class TagFilter extends Component {
 
   getFilteredWorks(tagInput = '', searchInput = '') {
 
-    const { dispatch, loadWorks } = this.props;
+    const { dispatch, loadWorks, lang } = this.props;
+    const langPath = lang === 'ja' ? '/' : `/${lang}/`;
 
-    let fullUrl = '/works';
+    let fullUrl = `${langPath}works`;
     let params = {};
 
     // if there is no input, then show all works again, if not, then show works filtered by queries
@@ -49,7 +50,7 @@ export default class TagFilter extends Component {
     this.getFilteredWorks({value: e.target.value}, {value: ''});
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.initQueryFilter();
   }
 

@@ -32,7 +32,7 @@ const fetchWorks = fetchEntity.bind(null, works, api.fetchWorks);
 
 function* loadWorks(filter, params, lang, loadMore) {
 
-  const works = yield select(getWorks, filter);
+  const works = yield select(getWorks, filter, lang);
 
   if (!Object.keys(works).length || loadMore) {
 

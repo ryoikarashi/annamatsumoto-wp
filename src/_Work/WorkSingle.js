@@ -33,13 +33,16 @@ class Single extends Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { filter, params, loadWorks, allWorks } = this.props;
     const { lang } = params;
 
     if (!allWorks.length) {
       loadWorks(filter, params, lang);
     }
+  }
+
+  componentDidMount() {
     this.highlightBlock();
     this.addParagraphFlag();
   }
@@ -86,9 +89,11 @@ function mapStateToProps(state, ownProps) {
   const { slug } = ownProps.params;
 
   const {
-    entities: { works }
+    entities: { entities },
+    lang: {lang}
   } = state;
 
+  const { works } = entities[lang];
   const allWorks = !!works[slug] ? [works[slug]] : [];
 
   return {

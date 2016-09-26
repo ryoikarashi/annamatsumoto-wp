@@ -22,7 +22,7 @@ const content = (
   return state;
 };
 
-function languages({mapActionToKey}) {
+function languages({mapActionToKey}, reducer) {
   return function contentsByKey(state = {}, action) {
     const key = mapActionToKey(action);
 
@@ -31,7 +31,7 @@ function languages({mapActionToKey}) {
     }
 
     return merge({}, state, {
-      [key]: content(state[key], action)
+      [key]: reducer(state[key], action)
     });
   }
 }
@@ -39,13 +39,19 @@ function languages({mapActionToKey}) {
 const entities = combineReducers({
   entities: languages({
     mapActionToKey: action => action.lang || 'ja'
-  })
+  }, content)
 });
+
+const langPagination = combineReducers({
+  lang: languages({
+    mapActionToKey: action => action.lang || 'ja'
+  }, pagination)
+})
 
 const rootReducer = combineReducers({
   routing,
   entities,
-  pagination,
+  pagination: langPagination,
   me,
   top,
   lang

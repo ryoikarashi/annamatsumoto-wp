@@ -1,1 +1,1 @@
-export const getWorks = (state, filter) => state.pagination.worksByFilter[filter] || {};
+export const getWorks = (state, filter, lang) => state.pagination.lang[lang || 'ja'].worksByFilter[filter] || {};
