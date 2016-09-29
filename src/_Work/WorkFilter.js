@@ -7,7 +7,7 @@ export default class TagFilter extends Component {
   constructor(props) {
     super(props);
     this.selectWorksByTag = this.selectWorksByTag.bind(this);
-    this.currentTag = this.props.location.pathname.indexOf('/works/tag/') !== -1 ? this.props.location.pathname.replace('/works/tag/', '') : '';
+    this.currentTag = this.props.params.tag;
   }
 
   initQueryFilter() {
@@ -38,8 +38,6 @@ export default class TagFilter extends Component {
         params.search = searchInput.value;
       }
     }
-
-    this.currentTag =
 
     dispatch(push(fullUrl));
     loadWorks(fullUrl, params, false);
