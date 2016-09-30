@@ -78,7 +78,7 @@ class Single extends Component {
                     <div className="entry__body">
                       <div>
                         <div dangerouslySetInnerHTML={{__html: item.content.rendered}} />
-                        <Share pathname={location.pathname} title={item.title.rendered} />
+                        <Share pathname={lang === 'ja' ? `/ja${location.pathname}` : location.pathname} title={item.title.rendered} />
                       </div>
                     </div>
                   </div>
