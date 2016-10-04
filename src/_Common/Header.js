@@ -22,8 +22,8 @@ class Header extends Component {
         </nav>
         <div className="header__lang">
           <ul>
-            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '')} className={cn({active: typeof lang === 'undefined'})}>JP</Link></li>
-            <li className="header__lang__item"><Link to={pathname.replace(langRoute, '/en')} className={cn({active: lang === 'en'})}>EN</Link></li>
+            <li className={cn({'header__lang__item': true, active: typeof lang === 'undefined'})}><Link to={pathname.replace(langRoute, '')}>JP</Link></li>
+            <li className={cn({'header__lang__item': true, active: lang === 'en'})}><Link to={pathname.replace(langRoute, '/en')}>EN</Link></li>
           </ul>
         </div>
       </header>
