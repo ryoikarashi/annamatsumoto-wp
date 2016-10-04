@@ -11,6 +11,7 @@ import Loading from '../_Common/Loading';
 import { loadNotes } from './actions';
 import PageTransition from '../_Common/PageTransition';
 import Share from '../_Common/Share';
+import { titles } from '../data';
 
 class Single extends Component {
 
@@ -57,17 +58,19 @@ class Single extends Component {
 
   render() {
 
-    const { location, allNotes, lang } = this.props;
+    const { location, allNotes, lang, isFetching } = this.props;
     const isEmpty = allNotes.length === 0;
     const item = allNotes[0];
     const langPath = lang === 'ja' ? '/notes' : `/${lang}/notes`;
 
+    const title = !isFetching && !isEmpty ? item.title.rendered : titles.notFound;
+
     return (
       <div>
-        { !isEmpty ? <Helmet title={item.title.rendered} /> : '' }
+        <Helmet title={title} />
 
         { isEmpty
-            ? <Loading isFetching={isEmpty} />
+            ? <Loading isFetching={isFetching} noContent={isEmpty} />
             : <PageTransition location={location}>
                 <article className="entry" ref="post">
                   <div className="container">
@@ -96,15 +99,18 @@ function mapStateToProps(state, ownProps) {
 
   const {
     entities: { entities },
-    lang: {lang}
+    lang: {lang},
+    pagination
   } = state;
 
   const { notes } = entities[lang];
   const allNotes = !!notes[slug] ? [notes[slug]] : [];
+  const { isFetching } = pagination.lang[lang].notesByFilter[filter] || true;
 
   return {
     allNotes,
     filter,
+    isFetching,
     lang
   };
 }
