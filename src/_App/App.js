@@ -25,6 +25,11 @@ class App extends Component {
       case `/${lang}/works`:
       case `/${lang}/works/`:
         return titles.works;
+      case '/notes':
+      case '/notes/':
+      case `/${lang}/notes`:
+      case `/${lang}/notes/`:
+        return titles.notes;
       default:
         return titles.notFound;
     }

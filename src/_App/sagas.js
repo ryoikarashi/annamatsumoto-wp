@@ -1,6 +1,7 @@
 import { put, call, fork } from 'redux-saga/effects';
 
 import { watchLoadWorks, watchLoadMoreWorks } from '../_Work/sagas';
+import { watchLoadNotes, watchLoadMoreNotes } from '../_Note/sagas';
 import { watchLoadMe } from '../_Me/sagas';
 import { watchLoadTop } from '../_Top/sagas';
 import { watchLoadCategories, watchLoadTags } from '../taxonomy/sagas';
@@ -20,6 +21,8 @@ export default function* root() {
   yield [
     fork(watchLoadWorks),
     fork(watchLoadMoreWorks),
+    fork(watchLoadNotes),
+    fork(watchLoadMoreNotes),
     fork(watchLoadTags),
     fork(watchLoadCategories),
     fork(watchLoadMe),

@@ -9,6 +9,7 @@ import { lang } from '../i18n/reducers';
 const content = (
   state = {
     works: {},
+    notes: {},
     tags: {},
     categories: {},
     me: {},

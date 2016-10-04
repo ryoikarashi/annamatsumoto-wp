@@ -7,5 +7,6 @@ export const titles = {
   top: base,
   me: `ME${appender}`,
   works: `WORKS${appender}`,
+  notes: `NOTES${appender}`,
   notFound: `Not Found :(${appender}`
 };

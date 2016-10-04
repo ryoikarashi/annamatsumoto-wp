@@ -51,6 +51,11 @@ const workSchema = new Schema('works', {
 });
 const workSchemaArray = arrayOf(workSchema);
 
+const noteSchema = new Schema('notes', {
+  idAttribute: note => note.slug
+});
+const noteSchemaArray = arrayOf(noteSchema);
+
 const tagSchema = new Schema('tags');
 const tagSchemaArray = arrayOf(tagSchema);
 
@@ -65,6 +70,7 @@ const topSchemaArray = arrayOf(topSchema);
 
 // api services
 export const fetchWorks      = (params, url, lang) => callApi(url, workSchemaArray, lang);
+export const fetchNotes      = (params, url, lang) => callApi(url, noteSchemaArray, lang);
 export const fetchTags       = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
 export const fetchMe         = (params, lang) => callApi('pages?filter[name]=me', meSchemaArray, lang);

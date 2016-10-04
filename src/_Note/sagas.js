@@ -1,11 +1,11 @@
 /* eslint-disable no-constant-condition */
 import { take, call, fork, select } from 'redux-saga/effects';
 import { api } from '../services';
-import { LOAD_WORKS, LOAD_MORE_WORKS, works } from './actions';
-import { getWorks } from './selectors';
+import { LOAD_NOTES, LOAD_MORE_NOTES, notes } from './actions';
+import { getNotes } from './selectors';
 import { fetchEntity } from '../_App/sagas';
 
-const firstPageWorksUrl = params => {
+const firstPageNotesUrl = params => {
 
   params.slug     = params.hasOwnProperty('slug')     ? params.slug     : '';
   params.category = params.hasOwnProperty('category') ? params.category : '';
@@ -15,7 +15,7 @@ const firstPageWorksUrl = params => {
   params.month    = params.hasOwnProperty('month')    ? params.month    : '';
   params.day      = params.hasOwnProperty('day')      ? params.day      : '';
 
-  return `works?
+  return `notes?
     filter[category_name]=${params.category}&
     filter[tag]=${params.tag}&
     filter[s]=${params.search}&
@@ -28,35 +28,35 @@ const firstPageWorksUrl = params => {
 };
 
 /***************************** Subroutines ************************************/
-const fetchWorks = fetchEntity.bind(null, works, api.fetchWorks);
+const fetchNotes = fetchEntity.bind(null, notes, api.fetchNotes);
 
-function* loadWorks(filter, params, lang, loadMore) {
+function* loadNotes(filter, params, lang, loadMore) {
 
-  const works = yield select(getWorks, filter, lang);
+  const notes = yield select(getNotes, filter, lang);
 
-  if (!Object.keys(works).length || loadMore) {
+  if (!Object.keys(notes).length || loadMore) {
 
     yield call(
-      fetchWorks,
+      fetchNotes,
       filter,
       params,
-      works.nextPageUrl || firstPageWorksUrl(params),
+      notes.nextPageUrl || firstPageNotesUrl(params),
       lang
     );
   }
 }
 
 /******************************* WATCHERS *************************************/
-export function* watchLoadWorks() {
+export function* watchLoadNotes() {
   while(true) {
-    const {filter, params, lang} = yield take(LOAD_WORKS);
-    yield fork(loadWorks, filter, params, lang);
+    const {filter, params, lang} = yield take(LOAD_NOTES);
+    yield fork(loadNotes, filter, params, lang);
   }
 }
 
-export function* watchLoadMoreWorks() {
+export function* watchLoadMoreNotes() {
   while(true) {
-    const {filter, params, lang} = yield take(LOAD_MORE_WORKS);
-    yield fork(loadWorks, filter, params, lang, true);
+    const {filter, params, lang} = yield take(LOAD_MORE_NOTES);
+    yield fork(loadNotes, filter, params, lang, true);
   }
 }

@@ -64,6 +64,7 @@ function paginate({ types, mapActionToKey }) {
 }
 
 import { WORKS } from '../_Work/actions';
+import { NOTES } from '../_Note/actions';
 import { combineReducers } from 'redux';
 
 export const pagination = combineReducers({
@@ -73,6 +74,14 @@ export const pagination = combineReducers({
       WORKS.REQUEST,
       WORKS.SUCCESS,
       WORKS.FAILURE
+    ]
+  }),
+  notesByFilter: paginate({
+    mapActionToKey: action => action.filter,
+    types: [
+      NOTES.REQUEST,
+      NOTES.SUCCESS,
+      NOTES.FAILURE
     ]
   })
 });

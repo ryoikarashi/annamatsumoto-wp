@@ -18,6 +18,7 @@ class Header extends Component {
           <ul>
             <li className="header__nav__item"><Link to={`${langRoute}/me`} activeClassName="active">ME</Link></li>
             <li className="header__nav__item"><Link to={`${langRoute}/works`} activeClassName="active">WORKS</Link></li>
+            <li className="header__nav__item"><Link to={`${langRoute}/notes`} activeClassName="active">NOTES</Link></li>
           </ul>
         </nav>
         <div className="header__lang">
