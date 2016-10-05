@@ -48,7 +48,7 @@ class MemoList extends Component {
     const langPath = lang === 'ja' ? '/works' : `/${lang}/works`;
 
     return (
-      <div className="[ layout__item ] [ lap-and-up-one-third--square palm-one-half mobile-one-whole ]">
+      <div className="[ layout__item ] [ desk-one-quarter lap-and-up-one-third--square palm-one-half mobile-one-whole ]">
         <Link to={`${langPath}/${item.slug}`}>
           <article className="post" style={{backgroundImage: this.hasThumbnail() ? this.getItemBg().image : this.getItemBg().gradient}}>
             <h1 className="post__title">{item.title.rendered}</h1>

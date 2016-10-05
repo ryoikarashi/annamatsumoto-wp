@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import cn from 'classnames';
 
 class Header extends Component {
+
   render() {
 
     const { location: {pathname}, params: {lang} } = this.props;
@@ -11,7 +12,8 @@ class Header extends Component {
     return (
       <header className="header">
         <Link className="header__title" to={langRoute}>
-          <h1 className="header__title__text header__title__text--en"><span>Anna Matsumoto</span></h1>
+          <h1 className="header__title__text header__title__text--en"><span>ANNA MATSUMOTO</span></h1>
+          <span>/</span>
           <h2 className="header__title__text header__title__text--ja"><span>松本 杏菜</span></h2>
         </Link>
         <nav className="header__nav">
