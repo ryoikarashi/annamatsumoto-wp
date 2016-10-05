@@ -42,12 +42,18 @@ class App extends Component {
     }
   }
 
+  handlePageUniqueClassName(pathname, lang) {
+    pathname = lang ? pathname.replace(`/${lang}`, '') : pathname;
+    const page = pathname.split('/')[1] || 'top';
+    return page;
+  }
+
   render() {
 
     const { location: {pathname}, params: {lang} } = this.props;
 
     return (
-      <div>
+      <div className={this.handlePageUniqueClassName(pathname, lang)}>
         <Helmet title={this.handlePageTitle(pathname, lang)} />
           <PageTransition location={this.props.location}>
             <Header {...this.props} />
