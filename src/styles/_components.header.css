@@ -45,14 +45,26 @@
     }
   }
 
-  .header__nav__item {
-    a {
-      color: var(--page-header-text--inv);
-      &:before {
-        background-color: var(--page-header-text--inv);
-      }
+  .header__lang {
+    @media (--breakpoint-mobile) {
+      display: none;
     }
   }
+
+  .header__nav {
+    @media (--breakpoint-mobile) {
+      right: 8px;
+    }
+  }
+
+    .header__nav__item {
+      a {
+        color: var(--page-header-text--inv);
+        &:before {
+          background-color: var(--page-header-text--inv);
+        }
+      }
+    }
 }
 
 .header {
@@ -103,6 +115,7 @@
     }
 
   .header__title {
+    background: rgba(255, 255, 255, .2);
     position: absolute;
     top: 50%;
     left: var(--base-spacing-unit);
@@ -110,6 +123,7 @@
     display: block;
     float: left;
     @media (--breakpoint-mobile) {
+      top: 46%;
       left: var(--base-spacing-unit--tiny);
     }
     span {
@@ -128,6 +142,9 @@
       display: inline;
       margin-bottom: 0;
       position: relative;
+      @media (--breakpoint-mobile) {
+        display: block;
+      }
     }
       .header__title__text--en {
         @mixin fontsize 18px;
@@ -136,12 +153,16 @@
 
         @media (--breakpoint-mobile) {
           line-height: 1.4;
-          font-size: 15px;
+          font-size: 14px;
         }
       }
       .header__title__text--ja {
         @mixin fontsize 16px;
         letter-spacing: .3em;
+        @media (--breakpoint-mobile) {
+          line-height: 1.4;
+          font-size: 14px;
+        }
       }
 
   .header__nav {
@@ -149,6 +170,9 @@
     top: 50%;
     right: 70px;
     transform: translate(0, -50%);
+    @media (--breakpoint-mobile) {
+      right: 44px;
+    }
     ul, li { list-style: none; }
     ul { @util clearfix; margin: 0; }
   }
@@ -162,10 +186,12 @@
 
       @media (--breakpoint-mobile) {
         font-size: 15px;
+        margin-right: var(--base-spacing-unit--tiny);
       }
 
       &:last-child { margin-right: 0; }
       a {
+        background: rgba(255, 255, 255, .2);
         position: relative;
         font-weight: 500;
         display: block;
@@ -183,7 +209,7 @@
         &:before {
           content: '';
           position: absolute;
-          top: 48%;
+          top: 100%;
           left: 0;
           width: 100%;
           height: 1px;
