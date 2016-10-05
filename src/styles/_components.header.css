@@ -40,6 +40,10 @@
       }
 
   .header__title {
+    background: hsla(59,100%,58%,0.35);
+    @media (--breakpoint-mobile) {
+      padding: 4px;
+    }
     span {
       color: var(--page-header-text--inv);
     }
@@ -115,7 +119,6 @@
     }
 
   .header__title {
-    background: rgba(255, 255, 255, .2);
     position: absolute;
     top: 50%;
     left: var(--base-spacing-unit);
