@@ -1,5 +1,11 @@
 <?php
 
+// delete qtranslatex cookie
+function deleteDeadCookies() {
+  setcookie('qtrans_front_language', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
+}
+add_action('init', 'deleteDeadCookies');
+
 // add post thumbnail support
 add_theme_support( 'post-thumbnails' );
 
