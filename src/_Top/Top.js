@@ -17,8 +17,6 @@ class Top extends Component {
 
     const { isFetching, location, top } = this.props;
 
-    console.log(top);
-
     return (
       <div>
         {

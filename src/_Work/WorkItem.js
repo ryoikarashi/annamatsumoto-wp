@@ -9,7 +9,7 @@ class MemoList extends Component {
 
   getItemBg() {
     const { item } = this.props;
-    let thumbnailUrl = item.better_featured_image;
+    let thumbnailUrl = item.better_featured_image ? item.better_featured_image.source_url : '';
 
     const getFeaturedImage = thumbnailUrl => `url(${thumbnailUrl})`;
 
@@ -19,14 +19,6 @@ class MemoList extends Component {
       const color2  = `rgba(${(Math.floor(Math.random() * 256))}, ${(Math.floor(Math.random() * 256))}, ${(Math.floor(Math.random() * 256))}, ${opacity})`;
 
       return `linear-gradient(to left, ${color1}, ${color2})`;
-    }
-
-    if (thumbnailUrl) {
-      if (thumbnailUrl.media_details.sizes.medium_large !== undefined) {
-        thumbnailUrl = thumbnailUrl.media_details.sizes.medium_large.source_url;
-      } else {
-        thumbnailUrl = thumbnailUrl.source_url;
-      }
     }
 
     return {

@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition */
 import { take, call, fork, select } from 'redux-saga/effects';
+import { oneLineTrim } from 'common-tags';
 import { api } from '../services';
 import { LOAD_WORKS, LOAD_MORE_WORKS, works } from '../_Work/actions';
 import { getWorks } from '../_Work/selectors';
@@ -15,16 +16,15 @@ const firstPageWorksUrl = params => {
   params.month    = params.hasOwnProperty('month')    ? params.month    : '';
   params.day      = params.hasOwnProperty('day')      ? params.day      : '';
 
-  return `works?
-    filter[category_name]=${params.category}&
-    filter[tag]=${params.tag}&
-    filter[s]=${params.search}&
-    filter[name]=${params.slug}&
-    filter[year]=${params.year}&
-    filter[monthnum]=${params.month}&
-    filter[day]=${params.day}&
-    filter[orderby]=menu_order
-  `;
+  return oneLineTrim`works?
+                    ${params.slug.length ? `slug=${params.slug}&` : ''}
+                    filter[category_name]=${params.category}&
+                    filter[tag]=${params.tag}&
+                    filter[s]=${params.search}&
+                    filter[year]=${params.year}&
+                    filter[monthnum]=${params.month}&
+                    filter[day]=${params.day}&
+                    filter[orderby]=menu_order`;
 };
 
 /***************************** Subroutines ************************************/
