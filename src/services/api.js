@@ -67,5 +67,5 @@ const topSchemaArray = arrayOf(topSchema);
 export const fetchWorks      = (params, url, lang) => callApi(url, workSchemaArray, lang);
 export const fetchTags       = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
-export const fetchMe         = (params, lang) => callApi('pages?filter[name]=me', meSchemaArray, lang);
-export const fetchTop        = (params, lang) => callApi('pages?filter[name]=top', topSchemaArray, lang);
+export const fetchMe         = (params, lang) => callApi('pages?slug=me', meSchemaArray, lang);
+export const fetchTop        = (params, lang) => callApi('pages?slug=top', topSchemaArray, lang);
