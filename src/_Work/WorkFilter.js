@@ -37,7 +37,7 @@ export default class TagFilter extends Component {
     }
 
     dispatch(push(fullUrl));
-    loadWorks(fullUrl, params, false);
+    loadWorks(fullUrl, params, lang);
   }
 
   selectWorksByTag(e) {
