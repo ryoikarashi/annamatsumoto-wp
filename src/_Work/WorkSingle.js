@@ -25,6 +25,7 @@ class Single extends Component {
 
   getDate(date) {
     date = new Date(date);
+    date = new Date( date.getTime() - date.getTimezoneOffset() * -60000 );
     return date.toFormat('YYYY/MM/DD');
   }
 
@@ -57,7 +58,7 @@ class Single extends Component {
 
   render() {
 
-    const { location, allWorks, lang } = this.props;
+    const { location, allWorks, lang, worksPagination: { isFetching } } = this.props;
     const isEmpty = allWorks.length === 0;
     const item = allWorks[0];
     const langPath = lang === 'ja' ? '/works' : `/${lang}/works`;
@@ -67,7 +68,7 @@ class Single extends Component {
         { !isEmpty ? <Helmet title={item.title.rendered} /> : '' }
 
         { isEmpty
-            ? <Loading isFetching={isEmpty} />
+            ? <Loading isFetching={isFetching && isEmpty} />
             : <PageTransition location={location}>
                 <article className="entry" ref="post">
                   <div className="container">
@@ -95,9 +96,13 @@ function mapStateToProps(state, ownProps) {
   const { slug } = ownProps.params;
 
   const {
+    pagination,
     entities: { entities },
     lang: {lang}
   } = state;
+
+  const { worksByFilter } = pagination.lang[lang];
+  const worksPagination = worksByFilter[filter] || { ids: [] };
 
   const { works } = entities[lang];
   const allWorks = !!works[slug] ? [works[slug]] : [];
@@ -105,7 +110,8 @@ function mapStateToProps(state, ownProps) {
   return {
     allWorks,
     filter,
-    lang
+    lang,
+    worksPagination
   };
 }
 

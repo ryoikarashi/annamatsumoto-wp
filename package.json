@@ -97,6 +97,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.0",
     "lodash": "^4.13.1",
+    "moment": "^2.17.1",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.2.0",
     "normalizr": "^2.1.0",

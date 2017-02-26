@@ -5,15 +5,16 @@ import Loading from '../_Common/Loading';
 import { loadWorks } from './actions';
 import Pagination from '../_Paginate/Paginate';
 import WorkFilter from './WorkFilter';
-import { loadCategories, loadTags } from '../taxonomy/actions';
+// import { loadCategories, loadTags } from '../taxonomy/actions';
 import PageTransition from '../_Common/PageTransition';
 
 class MemoList extends Component {
 
   loadWorks() {
-    const { filter, loadWorks, params } = this.props;
+    const { filter, loadWorks, params, tags } = this.props;
     const { lang } = params;
-    loadWorks(filter, params, lang);
+    const newParams = Object.assign({}, params, {tag: tags[params.tag] ? tags[params.tag].id : params.tag ? -1 : '' });
+    loadWorks(filter, newParams, lang);
   }
 
   componentWillMount() {
@@ -38,26 +39,34 @@ class MemoList extends Component {
     return (
       <div>
         <WorkFilter {...this.props} />
-        <div className="[ band--small ]">
-          <div className="[ wrapper ]">
-            {
-              !allWorks.length
-                ? <Loading isFetching={isFetching} />
-                : <PageTransition location={location}>
-                    <div className="[ layout layout--tiny ]">
-                      { allWorks.map(item => <WorkItem key={item.id} item={item} lang={lang} />) }
+        {
+          allWorks.length
+            ?
+              <div>
+                <div className="[ band--small ]">
+                  <div className="[ wrapper ]">
+                    {
+                      !allWorks.length
+                        ? <Loading isFetching={isFetching} />
+                        : <PageTransition location={location}>
+                            <div className="[ layout layout--tiny ]">
+                              { allWorks.map(item => <WorkItem key={item.id} item={item} lang={lang} />) }
+                            </div>
+                          </PageTransition>
+                    }
+                  </div>
+                </div>
+                {nextPageUrl
+                  ? <div className="[ band ]">
+                      <div className="wrapper">
+                        <Pagination {...this.props} />
+                      </div>
                     </div>
-                  </PageTransition>
-            }
-          </div>
-        </div>
-        {nextPageUrl
-          ? <div className="[ band ]">
-              <div className="wrapper">
-                <Pagination {...this.props} />
+                  : ''
+                }
               </div>
-            </div>
-          : ''
+            :
+              <Loading isFetching={isFetching} />
         }
       </div>
     )
@@ -65,30 +74,10 @@ class MemoList extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-
-  const filter = ownProps.location.pathname;
-
-  const {
-    pagination,
-    entities: { entities },
-    lang: { lang }
-  } = state;
-
-  const { worksByFilter } = pagination.lang[lang];
-  const { works, tags, categories } = entities[lang];
-  const worksPagination = worksByFilter[filter] || { ids: [] };
-  const allWorks = worksPagination.ids.map(id => works[id]);
-  const { nextPageUrl } = worksPagination;
-
   return {
-    tags,
-    categories,
-    allWorks,
-    filter,
-    worksPagination,
-    nextPageUrl,
-    lang
-  };
+    ...state,
+    ...ownProps
+  }
 }
 
-export default connect(mapStateToProps, { loadWorks, loadCategories, loadTags })(MemoList);
+export default connect(mapStateToProps, { loadWorks })(MemoList);

@@ -7,15 +7,12 @@ export default class TagFilter extends Component {
   constructor(props) {
     super(props);
     this.selectWorksByTag = this.selectWorksByTag.bind(this);
-    this.currentTag = this.props.params.tag;
+    this.isWrongTag = !!this.props.params.tag && !this.props.tags[this.props.params.tag];
+    this.currentTagID = !this.isWrongTag ? !this.props.params.tag ? '' : this.props.tags[this.props.params.tag].id : '';
+    this.currentTagName = this.props.params.tag || '';
   }
 
-  initQueryFilter() {
-    const { loadTags, lang } = this.props;
-    loadTags(lang);
-  }
-
-  getFilteredWorks(tagInput = '', searchInput = '') {
+  getFilteredWorks(tagInput = {}, searchInput = {}) {
 
     const { dispatch, loadWorks, lang } = this.props;
     const langPath = lang === 'ja' ? '/' : `/${lang}/`;
@@ -25,12 +22,12 @@ export default class TagFilter extends Component {
 
     // if there is no input, then show all works again, if not, then show works filtered by queries
     if (searchInput.value   !== '' || typeof searchInput.value   !== 'undefined' ||
-        tagInput.value      !== '' || typeof tagInput.value      !== 'undefined')
+        tagInput.id      !== '' || typeof tagInput.id      !== 'undefined')
     {
 
-      if (tagInput.value !== '' && tagInput.value !== 'all') {
-        fullUrl += `/tag/${tagInput.value}`;
-        params.tag = tagInput.value;
+      if (tagInput.id !== '' && tagInput.id !== 'all') {
+        fullUrl += `/tag/${tagInput.slug}`;
+        params.tag = tagInput.id;
       }
 
       if (searchInput.value !== '') {
@@ -41,18 +38,16 @@ export default class TagFilter extends Component {
 
     dispatch(push(fullUrl));
     loadWorks(fullUrl, params, false);
-    this.refs.tag.value = tagInput.value;
   }
 
   selectWorksByTag(e) {
-    this.getFilteredWorks({value: e.target.value}, {value: ''});
-  }
-
-  componentWillMount() {
-    this.initQueryFilter();
+    const tag = JSON.parse(e.target.value);
+    this.getFilteredWorks(tag, {value: ''});
   }
 
   render() {
+    const { tags } = this.props;
+
     return (
       <div className="[ band--small ]">
         <div className="[ wrapper ]">
@@ -61,11 +56,12 @@ export default class TagFilter extends Component {
             this.getFilteredWorks();
           }}>
 
-            <select className="query-filter__select query-filter__select--tag" value={this.currentTag} onChange={this.selectWorksByTag} ref="tag">
-              <option value="all">all</option>
-              {Object.keys(this.props.tags).length
-                ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
-                : <option value="">Loading...</option>
+            <select className="query-filter__select query-filter__select--tag" onChange={this.selectWorksByTag} value={JSON.stringify(tags[this.currentTagName])}>
+              {this.isWrongTag ? <option value="{}">Select</option> : null}
+              <option value={JSON.stringify({id: 'all', slug: 'all'})}>all</option>
+              {Object.keys(tags).length
+                ? Object.values(tags).map(tag => <option key={tag.id} value={JSON.stringify(tag)}>{tag.slug}</option>)
+                : null
               }
             </select>
 

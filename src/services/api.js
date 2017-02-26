@@ -51,7 +51,9 @@ const workSchema = new Schema('works', {
 });
 const workSchemaArray = arrayOf(workSchema);
 
-const tagSchema = new Schema('tags');
+const tagSchema = new Schema('tags', {
+  idAttribute: tag => tag.slug
+});
 const tagSchemaArray = arrayOf(tagSchema);
 
 const categorySchema = new Schema('categories');
