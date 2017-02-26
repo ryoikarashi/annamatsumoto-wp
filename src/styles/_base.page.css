@@ -4,8 +4,6 @@ html, body {
 }
 
 html {
-  font-size: calc(strip(var(--base-font-size)) / strip(16px) * 1em);
-  font-family: var(--font-family);
   @mixin font-weight regular;
   background-color: var(--color-background);
   color: var(--color-text);
@@ -14,6 +12,8 @@ html {
 }
 
 body {
+  font-size: calc(strip(var(--base-font-size)) / strip(16px) * 1em);
+  font-family: var(--font-family);
   min-height: 100%;
   height: 100%;
 }
