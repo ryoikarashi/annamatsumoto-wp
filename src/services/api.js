@@ -1,5 +1,6 @@
 import { Schema, arrayOf, normalize } from 'normalizr';
 import appendQuery from 'append-query';
+import url from 'url';
 import 'isomorphic-fetch';
 
 function getNextPageUrl(res) {
@@ -15,7 +16,10 @@ function getNextPageUrl(res) {
     return null
   }
 
-  return nextLink.split(';')[0].replace(/ /g, '').slice(1, -1)
+  const nextLinkUrl = nextLink.split(';')[0].replace(/ /g, '').slice(1, -1);
+  const nextLinkUrlPath = url.parse(nextLinkUrl).path
+
+  return nextLinkUrlPath;
 }
 
 const API_ROOT = '/wp-json/wp/v2/';
@@ -28,6 +32,7 @@ function callApi(endpoint, schema, lang = '') {
     .then(response =>
       response.json().then(json => ({ json, response }))
     ).then(({json, response}) => {
+
       if (!response.ok) {
         return Promise.reject(json);
       }
