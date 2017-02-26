@@ -34,6 +34,9 @@
   <!-- Ionicons CDN -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
