@@ -26,6 +26,7 @@ function getPageUrl(res, direction = 'next', lang = 'en') {
   const nextLinkUrl = nextLink.split(';')[0].replace(/ /g, '').slice(1, -1);
   let nextLinkUrlPath = url.parse(nextLinkUrl).path
   nextLinkUrlPath = lang.length ? nextLinkUrlPath.replace(`/${lang}`, '') : nextLinkUrlPath;
+  nextLinkUrlPath = appendQuery(nextLinkUrlPath, `lang=${lang}`);
 
   return nextLinkUrlPath;
 }
