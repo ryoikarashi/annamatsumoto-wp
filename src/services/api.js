@@ -3,21 +3,29 @@ import appendQuery from 'append-query';
 import url from 'url';
 import 'isomorphic-fetch';
 
-function getNextPageUrl(res) {
-  const link = res.headers.get('link')
+function getHeaderLink(res) {
+  const link = res.headers.get('link');
 
   if (!link) {
-    return null
+    return null;
   }
 
-  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
+  return link;
+}
+
+function getPageUrl(res, direction = 'next', lang = 'en') {
+
+  const link = getHeaderLink(res);
+
+  const nextLink = link.split(',').find(s => s.indexOf(`rel="${direction}"`) > -1)
 
   if (!nextLink) {
     return null
   }
 
   const nextLinkUrl = nextLink.split(';')[0].replace(/ /g, '').slice(1, -1);
-  const nextLinkUrlPath = url.parse(nextLinkUrl).path
+  let nextLinkUrlPath = url.parse(nextLinkUrl).path
+  nextLinkUrlPath = lang.length ? nextLinkUrlPath.replace(`/${lang}`, '') : nextLinkUrlPath;
 
   return nextLinkUrlPath;
 }
@@ -37,7 +45,7 @@ function callApi(endpoint, schema, lang = '') {
         return Promise.reject(json);
       }
 
-      const nextPageUrl = getNextPageUrl(response);
+      const nextPageUrl = getPageUrl(response, 'next', lang);
 
       return Object.assign({},
         normalize(json, schema),
