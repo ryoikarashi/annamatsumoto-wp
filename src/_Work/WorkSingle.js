@@ -58,6 +58,8 @@ class Single extends Component {
 
   render() {
 
+    window.scrollTo(0, 0);
+
     const { location, allWorks, lang, worksPagination: { isFetching } } = this.props;
     const isEmpty = allWorks.length === 0;
     const item = allWorks[0];
