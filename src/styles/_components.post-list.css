@@ -13,6 +13,10 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
   @mixin transition all;
   &:hover {
     .post__title {
