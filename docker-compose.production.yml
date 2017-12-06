@@ -27,7 +27,7 @@ services:
       --max-allowed-packet=128M
     ports:
       - "3306:3306"
-    env_file: .env
+    env_file: .env-production
     restart: always
     volumes:
       - db-data--anna:/var/lib/mysql
