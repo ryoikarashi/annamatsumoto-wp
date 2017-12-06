@@ -7,7 +7,6 @@ services:
     environment:
       VIRTUAL_HOST: annamatsumoto.com
       VIRTUAL_PORT: 80
-      VIRTUAL_PROTO: https
       LETSENCRYPT_HOST: annamatsumoto.com
       LETSENCRYPT_EMAIL: me@annamatsumoto.com
     env_file: .env-production
