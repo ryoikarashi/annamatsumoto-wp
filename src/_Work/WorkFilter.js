@@ -2,18 +2,19 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-export default class TagFilter extends Component {
-
+class TagFilter extends Component {
   constructor(props) {
     super(props);
     this.selectWorksByTag = this.selectWorksByTag.bind(this);
-    this.isWrongTag = !!this.props.params.tag && !this.props.tags[this.props.params.tag];
-    this.currentTagID = !this.isWrongTag ? !this.props.params.tag ? '' : this.props.tags[this.props.params.tag].id : '';
+    this.isWrongTag =
+      !!this.props.params.tag && !this.props.tags[this.props.params.tag];
+    this.currentTagID = !this.isWrongTag
+      ? !this.props.params.tag ? '' : this.props.tags[this.props.params.tag].id
+      : '';
     this.currentTagName = this.props.params.tag || '';
   }
 
   getFilteredWorks(tagInput = {}, searchInput = {}) {
-
     const { dispatch, loadWorks, lang } = this.props;
     const langPath = lang === 'ja' ? '/' : `/${lang}/`;
 
@@ -21,10 +22,12 @@ export default class TagFilter extends Component {
     let params = {};
 
     // if there is no input, then show all works again, if not, then show works filtered by queries
-    if (searchInput.value   !== '' || typeof searchInput.value   !== 'undefined' ||
-        tagInput.id      !== '' || typeof tagInput.id      !== 'undefined')
-    {
-
+    if (
+      searchInput.value !== '' ||
+      typeof searchInput.value !== 'undefined' ||
+      tagInput.id !== '' ||
+      typeof tagInput.id !== 'undefined'
+    ) {
       if (tagInput.id !== '' && tagInput.id !== 'all') {
         fullUrl += `/tag/${tagInput.slug}`;
         params.tag = tagInput.id;
@@ -42,7 +45,7 @@ export default class TagFilter extends Component {
 
   selectWorksByTag(e) {
     const tag = JSON.parse(e.target.value);
-    this.getFilteredWorks(tag, {value: ''});
+    this.getFilteredWorks(tag, { value: '' });
   }
 
   render() {
@@ -51,31 +54,46 @@ export default class TagFilter extends Component {
     return (
       <div className="[ band--small ]">
         <div className="[ wrapper ]">
-          <form className="query-filter" onSubmit={e => {
-            e.preventDefault();
-            this.getFilteredWorks();
-          }}>
-
-            <select className="query-filter__select query-filter__select--tag" onChange={this.selectWorksByTag} value={JSON.stringify(tags[this.currentTagName])}>
+          <form
+            className="query-filter"
+            onSubmit={e => {
+              e.preventDefault();
+              this.getFilteredWorks();
+            }}
+          >
+            <select
+              className="query-filter__select query-filter__select--tag"
+              onChange={this.selectWorksByTag}
+              value={JSON.stringify(tags[this.currentTagName])}
+            >
               {this.isWrongTag ? <option value="{}">Select</option> : null}
-              <option value={JSON.stringify({id: 'all', slug: 'all'})}>all</option>
+              <option value={JSON.stringify({ id: 'all', slug: 'all' })}>
+                all
+              </option>
               {Object.keys(tags).length
-                ? Object.values(tags).map(tag => <option key={tag.id} value={JSON.stringify(tag)}>{tag.slug}</option>)
-                : null
-              }
+                ? Object.values(tags).map(tag => (
+                    <option key={tag.id} value={JSON.stringify(tag)}>
+                      {tag.slug}
+                    </option>
+                  ))
+                : null}
             </select>
 
-            <input className="query-filter__input query-filter__input--search" type="text" placeholder="search" ref="search" />
-
+            <input
+              className="query-filter__input query-filter__input--search"
+              type="text"
+              placeholder="search"
+              ref="search"
+            />
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  const { lang: {lang} } = state;
+  const { lang: { lang } } = state;
   return { lang };
 }
 
