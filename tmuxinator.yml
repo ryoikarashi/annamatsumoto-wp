@@ -1,0 +1,16 @@
+name: annamatsumoto
+root: .
+
+# tmux_command:
+
+windows:
+  - 🐙 git:
+    - git fetch
+    - git fetch --tags
+    - git status -s
+
+  - webpack:
+    - cd main-theme && yarn run start
+
+  - 🌎 docker-log:
+    - docker-compose -f docker-compose.development.yml logs -f --tail=50

@@ -18,6 +18,8 @@
   }
 
   p {
+    /*width: 100%;
+    max-width: 90%;*/
     @media (--breakpoint-palm-and-down) {
       width: 90%;
       margin-left: auto;
@@ -25,7 +27,7 @@
     }
   }
 
-  .wide {
+  /*.wide {
     margin-top: var(--base-spacing-unit--tiny);
     margin-bottom: var(--base-spacing-unit--tiny);
     width: 100%;
@@ -37,7 +39,7 @@
       width: 140%;
       margin-left: -20%;
     }
-  }
+  }*/
 
   audio, video {
     display: block;

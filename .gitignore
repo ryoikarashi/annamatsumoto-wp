@@ -8,7 +8,7 @@ dist/assets/bundle.js.map
 dist/assets/main.css
 dist/assets/iehack.js
 dist/assets/styles.css
-
+.env-production
 wp-deploy-plugins.sh
 wp-deploy-to-local-wp.sh
 wp-deploy-to-prod.sh

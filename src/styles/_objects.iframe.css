@@ -4,12 +4,14 @@
   height: 0;
   overflow: hidden;
   &.wide {
-    @media (--breakpoint-lap-and-up) {
-      padding-bottom: 61.875%; /* 110 * 0.5625 */
-    }
-    @media (--breakpoint-desk) {
-      padding-bottom: 78.75%; /* 140 * 0.5625 */
-    }
+    /*@media (--breakpoint-lap-and-up) {*/
+       /*110 * 0.5625 */
+      /* padding-bottom: 61.875%;*/
+    /*}*/
+    /*@media (--breakpoint-desk) {
+      /* 140 * 0.5625 */
+      /* padding-bottom: 78.75%; */
+    /*}*/
   }
   iframe {
     position: absolute;

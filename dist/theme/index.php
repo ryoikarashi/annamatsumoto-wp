@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <!--
-----------------------------------------------------------
-| Author      | Ryo Ikarashi                             |
-| Twitter     | https://twitter.com/ryo_ikarashi         |
-| Github      | https://github.com/RyoIkarashi           |
-| Contact     | me@ryoikarashi.com                       |
-----------------------------------------------------------
+  | Author      | Ryo Ikarashi                             |
+  | Twitter     | https://twitter.com/ryo_ikarashi         |
+  | Github      | https://github.com/RyoIkarashi           |
+  | Contact     | me@ryoikarashi.com                       |
 -->
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Anna Matsumoto portfolio site.">
 
   <meta property="og:title" content="Anna Matsumoto (松本杏菜)">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://annamatsumoto.com">
-  <meta property="og:image" content="http://annamatsumoto.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://annamatsumoto.com">
+  <meta property="og:image" content="https://annamatsumoto.com/assets/og-image.jpg">
   <meta property="og:site_name" content="Anna Matsumoto (松本杏菜)">
   <meta property="og:description" content="Anna Matsumoto portfolio site.">
 
@@ -25,14 +23,14 @@
   <meta name="twitter:title" content="Anna Matsumoto (松本杏菜)">
   <meta name="twitter:creator" content="@anna7h">
   <meta name="twitter:description" content="Anna Matsumoto portfolio site.">
-  <meta name="twitter:url" content="http://annamatsumoto.com">
-  <meta name="twitter:image" content="http://annamatsumoto.com/assets/og-image.jpg">
+  <meta name="twitter:url" content="https://annamatsumoto.com">
+  <meta name="twitter:image" content="https://annamatsumoto.com/assets/og-image.jpg">
   <meta property="fb:app_id" content="341626932839504">
   <meta property="fb:admins" content="100002542111748">
   <meta property="article:publisher" content="https://www.facebook.com/anna.matsumoto.75">
 
   <!-- Ionicons CDN -->
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">

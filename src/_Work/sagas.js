@@ -8,7 +8,6 @@ import { fetchEntity } from '../_App/sagas';
 import moment from 'moment';
 
 function toISO8601(year, month, day) {
-
   if (year) {
     let time = {};
     time.year = Number(year);
@@ -45,14 +44,15 @@ function toISO8601(year, month, day) {
 }
 
 const firstPageWorksUrl = params => {
-
-  params.slug       = params.hasOwnProperty('slug')     ? params.slug       : '';
-  params.category   = params.hasOwnProperty('category') ? params.category   : undefined;
-  params.tag        = params.hasOwnProperty('tag')      ? params.tag        : undefined;
-  params.search     = params.hasOwnProperty('search')   ? params.search     : '';
-  params.year       = params.hasOwnProperty('year')     ? params.year       : '';
-  params.month      = params.hasOwnProperty('month')    ? params.month      : '';
-  params.day        = params.hasOwnProperty('day')      ? params.day        : '';
+  params.slug = params.hasOwnProperty('slug') ? params.slug : '';
+  params.category = params.hasOwnProperty('category')
+    ? params.category
+    : undefined;
+  params.tag = params.hasOwnProperty('tag') ? params.tag : undefined;
+  params.search = params.hasOwnProperty('search') ? params.search : '';
+  params.year = params.hasOwnProperty('year') ? params.year : '';
+  params.month = params.hasOwnProperty('month') ? params.month : '';
+  params.day = params.hasOwnProperty('day') ? params.day : '';
 
   const time = toISO8601(params.year, params.month, params.day);
 
@@ -60,7 +60,7 @@ const firstPageWorksUrl = params => {
                     ${params.slug.length ? `slug=${params.slug}&` : ''}
                     ${params.category ? `categories=${params.category}&` : ''}
                     ${params.tag ? `tags=${params.tag}&` : ''}
-                    search=${params.search}&
+                    ${params.search ? `search=${params.search}` : ''}
                     ${time ? `after=${time.after}&` : ''}
                     ${time ? `before=${time.before}&` : ''}
                     orderBy=menu_order`;
@@ -70,11 +70,9 @@ const firstPageWorksUrl = params => {
 const fetchWorks = fetchEntity.bind(null, works, api.fetchWorks);
 
 function* loadWorks(filter, params, lang, loadMore) {
-
   const works = yield select(getWorks, filter, lang);
 
   if (!Object.keys(works).length || loadMore) {
-
     yield call(
       fetchWorks,
       filter,
@@ -87,15 +85,15 @@ function* loadWorks(filter, params, lang, loadMore) {
 
 /******************************* WATCHERS *************************************/
 export function* watchLoadWorks() {
-  while(true) {
-    const {filter, params, lang} = yield take(LOAD_WORKS);
+  while (true) {
+    const { filter, params, lang } = yield take(LOAD_WORKS);
     yield fork(loadWorks, filter, params, lang);
   }
 }
 
 export function* watchLoadMoreWorks() {
-  while(true) {
-    const {filter, params, lang} = yield take(LOAD_MORE_WORKS);
+  while (true) {
+    const { filter, params, lang } = yield take(LOAD_MORE_WORKS);
     yield fork(loadWorks, filter, params, lang, true);
   }
 }

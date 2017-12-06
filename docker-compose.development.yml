@@ -1,0 +1,46 @@
+version: "2"
+
+services:
+  web-anna:
+    build: .
+    container_name: web.anna
+    environment:
+      VIRTUAL_HOST: annamatsumoto.dev
+    env_file: .env
+    depends_on:
+      - db-anna
+    restart: always
+    volumes:
+      - ./dist/theme:/var/www/html/wp-content/themes/main
+      - ./dist/assets:/var/www/html/assets
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
+
+  db-anna:
+    image: mysql:5.7
+    container_name: db-anna
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --max-allowed-packet=128M
+    ports:
+      - "3306:3306"
+    env_file: .env
+    restart: always
+    volumes:
+      - db-data--anna:/var/lib/mysql
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
+
+volumes:
+  db-data--anna:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: shared-anna

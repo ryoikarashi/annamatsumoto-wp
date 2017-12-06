@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node server",
     "init": "sh ./wp-initialize.sh --name annamatsumoto",
-    "build": "webpack --config webpack.config.js && sh ./wp-deploy-to-local.sh",
-    "build:prod": "webpack --config webpack.production.config.js && sh ./wp-deploy-to-local.sh",
+    "build": "webpack --config webpack.config.js",
+    "build:prod": "webpack --config webpack.production.config.js",
     "deploy-plugins:prod": "sh ./wp-deploy-plugins-to-prod.sh",
     "deploy-plugins:staging": "sh ./wp-deploy-plugins-to-staging.sh",
     "deploy:staging": "npm run build:prod && sh ./wp-deploy-to-staging.sh",
