@@ -6,6 +6,8 @@ services:
     container_name: web.anna
     environment:
       VIRTUAL_HOST: annamatsumoto.com
+      LETSENCRYPT_HOST: annamatsumoto.com
+      LETSENCRYPT_EMAIL: me@annamatsumoto.com
     env_file: .env-production
     depends_on:
       - db-anna
