@@ -22,6 +22,7 @@ services:
 
   proxy-ssl-anna:
     image: jrcs/letsencrypt-nginx-proxy-companion
+    privileged: true
     container_name: proxy-ssl-anna
     volumes_from:
       - proxy-anna
