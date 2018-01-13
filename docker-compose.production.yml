@@ -5,9 +5,9 @@ services:
     build: .
     container_name: web.anna
     environment:
-      VIRTUAL_HOST: annamatsumoto.com
+      VIRTUAL_HOST: www.annamatsumoto.com,annamatsumoto.com
       VIRTUAL_PORT: 80
-      LETSENCRYPT_HOST: annamatsumoto.com
+      LETSENCRYPT_HOST: www.annamatsumoto.com,annamatsumoto.com
       LETSENCRYPT_EMAIL: me@annamatsumoto.com
     env_file: .env-production
     depends_on:
